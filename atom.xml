@@ -3,11 +3,11 @@
   <title>lx`Blog</title>
   
   <subtitle>水边的哲学是不舍昼夜，山地的哲学是不知日月</subtitle>
-  <link href="http://qvp-nvn.github.io/atom.xml" rel="self"/>
+  <link href="https://amoit.top/atom.xml" rel="self"/>
   
-  <link href="http://qvp-nvn.github.io/"/>
-  <updated>2023-01-10T11:44:26.693Z</updated>
-  <id>http://qvp-nvn.github.io/</id>
+  <link href="https://amoit.top/"/>
+  <updated>2023-01-11T08:22:48.746Z</updated>
+  <id>https://amoit.top/</id>
   
   <author>
     <name>lx</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>test</title>
-    <link href="http://qvp-nvn.github.io/posts/d87f7e0c.html"/>
-    <id>http://qvp-nvn.github.io/posts/d87f7e0c.html</id>
+    <link href="https://amoit.top/posts/2297fd4f.html"/>
+    <id>https://amoit.top/posts/2297fd4f.html</id>
     <published>2023-01-10T11:37:01.000Z</published>
-    <updated>2023-01-10T11:44:26.693Z</updated>
+    <updated>2023-01-11T08:22:48.746Z</updated>
     
     <content type="html"><![CDATA[<p>test 666</p>]]></content>
     

@@ -2,16 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://qvp-nvn.github.io/posts/d87f7e0c.html</loc>
+    <loc>https://amoit.top/link/index.html</loc>
     
-    <lastmod>2023-01-10</lastmod>
+    <lastmod>2023-01-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://qvp-nvn.github.io/manifest.json</loc>
+    <loc>https://amoit.top/posts/2297fd4f.html</loc>
+    
+    <lastmod>2023-01-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://amoit.top/manifest.json</loc>
     
     <lastmod>2023-01-09</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://qvp-nvn.github.io/archives.html</loc>
+    <loc>https://amoit.top/archives.html</loc>
     
     <lastmod>2023-01-08</lastmod>
     
@@ -30,8 +39,8 @@
   
 
   <url>
-    <loc>http://qvp-nvn.github.io/</loc>
-    <lastmod>2023-01-10</lastmod>
+    <loc>https://amoit.top/</loc>
+    <lastmod>2023-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

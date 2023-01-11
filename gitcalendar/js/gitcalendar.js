@@ -70,8 +70,8 @@ const gitcalendar = new Vue({
     }
 });
 
-let githubapiurl = "https://python-github-calendar-api.vercel.app/api?" + gitcalendar.user;
-//let githubapiurl = "https://githubapi.ryanchristian.dev/user/" + gitcalendar.user;  
+let githubapiurl = "https://python-github-calendar-api.zfour.vercel.app/api/?" + gitcalendar.user;
+//let githubapiurl = "https://githubapi.ryanchristian.dev/user/" + gitcalendar.user; 
 //旧的api策略
 
 //canvas绘图
