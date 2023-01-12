@@ -355,7 +355,7 @@
     overflow: hidden;
     width: 230px;
     height: 143px;
-    background: var(--anzhiyu-card-bg);
+    background: var(--lx-card-bg);
     display: flex;
   }
   
