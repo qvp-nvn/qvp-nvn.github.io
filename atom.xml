@@ -6,7 +6,7 @@
   <link href="https://amoit.top/atom.xml" rel="self"/>
   
   <link href="https://amoit.top/"/>
-  <updated>2023-01-11T08:22:48.746Z</updated>
+  <updated>2023-01-13T14:54:41.596Z</updated>
   <id>https://amoit.top/</id>
   
   <author>
@@ -17,19 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hexo+netilify+twikoo 建立个人博客 （mac）</title>
+    <link href="https://amoit.top/posts/4de81b78.html"/>
+    <id>https://amoit.top/posts/4de81b78.html</id>
+    <published>2023-01-13T09:57:27.000Z</published>
+    <updated>2023-01-13T14:54:41.596Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="hexo-netilify-twikoo-建立个人博客-（mac）"><a href="#hexo-netilify-twikoo-建立个人博客-（mac）" class="headerlink" title="hexo+netilify+twikoo 建立个人博客 （mac）"></a>hexo+netilify+twikoo 建立个人博客 （mac）</h1><h2 id="参考博客："><a href="#参考博客：" class="headerlink" title="参考博客："></a>参考博客：</h2><pre><code>[小冰大佬的博客](https://zfe.space/)[安知鱼的博客](https://anzhiy.cn/)[爱铺bug的熊博客]( https://blog.cuijiacai.com/)</code></pre><h2 id="其他的资源"><a href="#其他的资源" class="headerlink" title="其他的资源"></a>其他的资源</h2><pre><code>//一些图标[阿里巴巴矢量库](https://www.iconfont.cn)//图片[vilipix](https://www.vilipix.com/)</code></pre><p>注意：一些地方需要到外网来搭建，建议先购买梯子</p><h1 id="使用的工具及系统环境以及花销"><a href="#使用的工具及系统环境以及花销" class="headerlink" title="使用的工具及系统环境以及花销:"></a>使用的工具及系统环境以及花销:</h1><pre><code>花销：19rmb博客框架是hexo，博客文件拖管于github，博客网站用netlify生成，国内访问采用vercel加速以及评论区制作系统环境是macOS，后续的教程都基于macOS的终端及其包管理软件homebrew进行域名是从阿里云购买的，9rmb/年图床使用的安知鱼的图床，懒得搭建了 10r/1Ghttps://img01.anzhiy.cn/useruploads/60/2023/01/13/63c13631d8033.png</code></pre><h1 id="hexo博客框架"><a href="#hexo博客框架" class="headerlink" title="hexo博客框架"></a>hexo博客框架</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>hexo是一个基于nodejs的静态博客网站生成器，作者是来自台湾的Tommy Chen<br>使用的one markdown进行日常的写博客，保存到_post文件下<br>（目前还需要新建 hexo n ‘博客主标题’）</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="homebrew-安装"><a href="#homebrew-安装" class="headerlink" title="homebrew 安装"></a>homebrew 安装</h3><h3 id="命令安装："><a href="#命令安装：" class="headerlink" title="命令安装："></a>命令安装：</h3><p><code>brew install node # homebrew安装nodejs</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;hexo-netilify-twikoo-建立个人博客-（mac）&quot;&gt;&lt;a href=&quot;#hexo-netilify-twikoo-建立个人博客-（mac）&quot; class=&quot;headerlink&quot; title=&quot;hexo+netilify+twikoo 建立个人博</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>test</title>
     <link href="https://amoit.top/posts/2297fd4f.html"/>
     <id>https://amoit.top/posts/2297fd4f.html</id>
     <published>2023-01-10T11:37:01.000Z</published>
-    <updated>2023-01-11T08:22:48.746Z</updated>
+    <updated>2023-01-13T09:58:24.913Z</updated>
     
-    <content type="html"><![CDATA[<p>test 666</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="test666"><a href="#test666" class="headerlink" title="test666"></a>test666</h2>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;test 666&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;h2 id=&quot;test666&quot;&gt;&lt;a href=&quot;#test666&quot; class=&quot;headerlink&quot; title=&quot;test666&quot;&gt;&lt;/a&gt;test666&lt;/h2&gt;</summary>
       
     
     
