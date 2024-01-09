@@ -6,7 +6,7 @@
   <link href="https://amoit.top/atom.xml" rel="self"/>
   
   <link href="https://amoit.top/"/>
-  <updated>2024-01-05T08:09:50.380Z</updated>
+  <updated>2024-01-09T12:44:23.816Z</updated>
   <id>https://amoit.top/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://amoit.top/posts/0.html"/>
+    <id>https://amoit.top/posts/0.html</id>
+    <published>2024-01-09T12:33:23.834Z</published>
+    <updated>2024-01-09T12:44:23.816Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="butterfly主题更新修改"><a href="#butterfly主题更新修改" class="headerlink" title="butterfly主题更新修改"></a>butterfly主题更新修改</h2><h3 id="1-搜索界面修改"><a href="#1-搜索界面修改" class="headerlink" title="1.搜索界面修改"></a>1.搜索界面修改</h3><blockquote><ol><li>Algolia</li><li>本地搜索</li><li>DocSearch【推荐】<br>(1)_config.butterfly.yml中修改<br>(2)  在其中加入<pre><code>docsearch:enable: falseappId:apiKey:indexName:option:</code></pre>(3)</li></ol></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;butterfly主题更新修改&quot;&gt;&lt;a href=&quot;#butterfly主题更新修改&quot; class=&quot;headerlink&quot; title=&quot;butterfly主题更新修改&quot;&gt;&lt;/a&gt;butterfly主题更新修改&lt;/h2&gt;&lt;h3 id=&quot;1-搜索界面修改&quot;&gt;&lt;a </summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Vue框架学习</title>
@@ -43,7 +63,7 @@ yarn 与npm</summary>
     <link href="https://amoit.top/posts/2289fd47.html"/>
     <id>https://amoit.top/posts/2289fd47.html</id>
     <published>2024-01-05T08:09:01.000Z</published>
-    <updated>2024-01-08T10:37:00.443Z</updated>
+    <updated>2024-01-08T11:36:24.953Z</updated>
     
     <content type="html"><![CDATA[<h2 id="react学习笔记"><a href="#react学习笔记" class="headerlink" title="react学习笔记"></a>react学习笔记</h2>]]></content>
     
@@ -51,6 +71,27 @@ yarn 与npm</summary>
       
       
     <summary type="html">&lt;h2 id=&quot;react学习笔记&quot;&gt;&lt;a href=&quot;#react学习笔记&quot; class=&quot;headerlink&quot; title=&quot;react学习笔记&quot;&gt;&lt;/a&gt;react学习笔记&lt;/h2&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows10 搭建gitlab服务器</title>
+    <link href="https://amoit.top/posts/2297fd45.html"/>
+    <id>https://amoit.top/posts/2297fd45.html</id>
+    <published>2024-01-04T11:37:01.000Z</published>
+    <updated>2024-01-09T12:13:09.330Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考文章：</p><h2 id="Clash-for-windows"><a href="#Clash-for-windows" class="headerlink" title="Clash for windows"></a>Clash for windows</h2><h3 id="配置：windows10"><a href="#配置：windows10" class="headerlink" title="配置：windows10"></a>配置：windows10</h3><h3 id="方法一-暂时未成功-docker无法在非专业版windows10进行配置没找到虚拟机接口"><a href="#方法一-暂时未成功-docker无法在非专业版windows10进行配置没找到虚拟机接口" class="headerlink" title="方法一 暂时未成功 docker无法在非专业版windows10进行配置没找到虚拟机接口"></a>方法一 暂时未成功 docker无法在非专业版windows10进行配置没找到虚拟机接口</h3><p>在家庭版安装Hyper-v虚拟机<br>参考文献：<br>Hyper-V是Windows系统自带的虚拟机软件，其主要功能是在不影响原系统的情况下创建多个Windows或非Windows子系统。</p><p>请注意：Hyper-V 仅在 Windows 10 专业版、企业版和教育版以及 Windows Server 2012 及以上版本中可用。<br>1、打开记事本输入以下命令。</p><p>``</p><p>pushd “%~dp0”</p><p>dir /b %SystemRoot%\servicing\Packages*Hyper-V*.mum &gt;hyper-v.txt</p><p>for /f %%i in (‘findstr /i . hyper-v.txt 2^&gt;nul’) do dism /online /norestart /add-package:”%SystemRoot%\servicing\Packages\%%i”<br>del hyper-v.txt<br>Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL</p><p>``<br>2、保存并命名为 Hyper-V.cmd，然后点击文件，右键以管理员身份运行，等待执行完成</p><p>3、输入Y重启计算机，重启完后就可以按Win键在开始菜单下的Windows管理工具查看有没有安装成功，安装成功会有个Hyper-V管理器</p><p>docker 删除不干净问题<br>参考文章：</p><p>解决方法：<br>把 C:/Program Files/Docker 删除后<br><code>按下Window+R唤起命令输入界面，输入regedit打开注册表编辑在地址栏输入HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Docker Desktop将整个Docker Desktop组点击右键删除</code></p><h3 id="方法二-ubuntu-应用商店自带（推荐）【2024-1-5可用】"><a href="#方法二-ubuntu-应用商店自带（推荐）【2024-1-5可用】" class="headerlink" title="方法二 ubuntu 应用商店自带（推荐）【2024.1.5可用】"></a>方法二 ubuntu 应用商店自带（推荐）【2024.1.5可用】</h3><p>1）打开ubuntu<br>设置用户名和密码<br>2）<br><code>https://about.gitlab.com/downloads/#ubuntu1404</code></p><pre><code>sudo apt updatesudo apt-get upgradesudo apt-get install curl openssh-server ca-certificates postfix</code></pre><p>出现的问题：<br>1.Ubuntu错误提示 E: Could not open lock file /var/lib/dpkg/lock-frontend - open<br>解决方案：</p><pre><code>1. sudo rm /var/lib/dpkg/lock-frontend2. sudo rm /var/lib/dpkg/lock3. sudo apt install p7zip-full</code></pre><p>2.找不到gitLabURL<br>解决方案：<br>[windows10 找寻ip地址：192.168.0.129:8077 root密码123456]<br>把/etc/gitlab/gitlab弄坏了<br>一定要输入i！！！！<br>然后</p><h3 id="方法三：windows10改ubuntu搭建gitlab服务器"><a href="#方法三：windows10改ubuntu搭建gitlab服务器" class="headerlink" title="方法三：windows10改ubuntu搭建gitlab服务器"></a>方法三：windows10改ubuntu搭建gitlab服务器</h3><pre><code>准备：1.U盘 32G（作者使用）2.window10系统的电脑</code></pre><p>【把u盘变成装两个系统1.window10 2.ubuntu 的功能盘】<br>1.先分区 用DiskGenius</p><h4 id="1-windows10改ubuntu"><a href="#1-windows10改ubuntu" class="headerlink" title="1.windows10改ubuntu"></a>1.windows10改ubuntu</h4><p>1）Ubuntu系统镜像下载<br><img src="https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/ubuntuzp.jpg" alt="ubuntu首页照片"><br>2.1）制作启动盘软件(UltraISO)下载<br>UltralSO官网：</p><blockquote><p><a href="https://filehippo.com/download_ultra-iso"></a><br>/直接下载免费试用版本，全部默认下一步安装。<br>2.2）下载rufus(官网推荐)<br>下载地址（<a href="https://rufus.ie/）或">https://rufus.ie/）或</a><br>下载地址(<a href="https://www.jb51.net/softs/86993.html">https://www.jb51.net/softs/86993.html</a>)<br>【 分区类型：GPT和MBR的区别】<br>MBR<br>MBR的意思是“主引导记录”，是IBM公司早年间提出的。它是存在于磁盘驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统系统信息，并用一小段代码来启动系统。如果你安装了Windows，其启动信息就放在这一段代码中——如果MBR的信息损坏或误删就不能正常启动Windows，这时候你就需要找一个引导修复软件工具来修复它就可以了。Linux系统中MBR通常会是GRUB加载器。MBR。当一台电脑启动时，它会先启动主板自带的BIOS系统，bios加载MBR，MBR再启动Windows，这就是mbr的启动过程。<br>GPT<br>GPT的意思是GUID Partition Table，即“全局唯一标识磁盘分区表”。他是另外一种更加先进新颖的磁盘组织方式，一种使用UEFI启动的磁盘组织方式。最开始是为了更好的兼容性，后来因为其更大的支持内存（mbr分区最多支持2T的磁盘），更多的兼容而被广泛使用，特别是苹果的MAC系统全部使用gpt分区。gtp不在有分区的概念，所有CDEF盘都在一段信息中存储。<br>这是一个正逐渐取代MBR的新标准，它和UEFI相辅相成——UEFI用于取代老旧的BIOS，而GPT则取代老旧的MBR。之所以叫作”GUID分区表”，是因为你的驱动器上的每个分区都有一个全局唯一的标识符（globally unique identifier，GUID）——这是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符；<br>MBR分区和GPT分区的区别<br>因为兼容问题，gpt其实在引导的最开始部分也有一段mbr引导，也叫做“保护引导”，为了防止设备不支持uefi。</p></blockquote><p>mbr最多支持2T，而gpt理论上是无限制的。<br>mbr最多支持四个主分区，gpt没有限制。如果你想跑多系统，mbr最多4个而gpt没有限制。<br>win7只能用mbr分区，从Win8开始微软建议你使用gpt。<br>gpt是由uefi启动的，而uefi是后来才提出的概念，兼容性和稳定性不如bios+mbr。</p><p>原文链接：<a href="https://blog.csdn.net/wjzh2008/article/details/126927841">https://blog.csdn.net/wjzh2008/article/details/126927841</a><br>【文件系统】<br>文件系统，是计算机管理数据的一种目录结构。<br><em>两张对比图片</em><br><img src="https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/%25E6%2596%2587%25E4%25BB%25B6%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AF%25B9%25E6%25AF%25941.png" alt="文件系统对比1"><br><img src="https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%942.png" alt="文件系统对比2"></p><p><img src="https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/rufus.jpg" alt="rufus"><br>【建议使用GPT和NTFS】</p><p>单击第二行的“选择”，选择下载好的Ubuntu的iso文件。</p><p>单机“打开”，询问是否下载，选择“是”。</p><p>选择第一个，选择“OK”，再选择确定，稍等一会，启动盘制作完成。</p><p>三、安装Ubuntu<br>重启电脑，从u盘启动，作者从F11进入的</p><p>进入Ubuntu（safe graphics）</p><p>在界面中进入安装程序<br>中文简体-安装Ubuntu-键盘布局建议选English(US)-网络连接-最小安装，其他默认-清除整个磁盘并安装Ubuntu，也可以分区【<a href="https://blog.csdn.net/u012052268/article/details/77145427">分区参考</a>】-设置时区【自行设置】-设置用户名密码-自行设置-进行配置-在对应提示时拔掉u盘启动盘-进入ubuntu系统</p><h4 id="2-ubuntu系统中搭建gitlab"><a href="#2-ubuntu系统中搭建gitlab" class="headerlink" title="2.ubuntu系统中搭建gitlab"></a>2.ubuntu系统中搭建gitlab</h4><pre><code>sudo apt updatesudo apt-get upgradesudo apt-get install curl openssh-server ca-certificates postfix也可以用sudo apt-get install -y curl openssh-server ca-certificates tzdata perlcurl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash可以用在线和离线两种方式下载gitlab1.在线【推荐】2.离线</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;参考文章：&lt;/p&gt;
+&lt;h2 id=&quot;Clash-for-windows&quot;&gt;&lt;a href=&quot;#Clash-for-windows&quot; class=&quot;headerlink&quot; title=&quot;Clash for windows&quot;&gt;&lt;/a&gt;Clash for windows&lt;/h2&gt;</summary>
       
     
     
@@ -72,27 +113,6 @@ yarn 与npm</summary>
       
     <summary type="html">&lt;h2 id=&quot;window10分区&quot;&gt;&lt;a href=&quot;#window10分区&quot; class=&quot;headerlink&quot; title=&quot;window10分区&quot;&gt;&lt;/a&gt;window10分区&lt;/h2&gt;&lt;p&gt;windows10实现分盘的方法：&lt;/p&gt;
 &lt;p&gt;1、首先我们需要进去“磁盘</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>windows10 搭建gitlab服务器</title>
-    <link href="https://amoit.top/posts/2297fd45.html"/>
-    <id>https://amoit.top/posts/2297fd45.html</id>
-    <published>2024-01-04T11:37:01.000Z</published>
-    <updated>2024-01-08T06:43:58.816Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考文章：</p><h2 id="Clash-for-windows"><a href="#Clash-for-windows" class="headerlink" title="Clash for windows"></a>Clash for windows</h2><h3 id="配置：windows10"><a href="#配置：windows10" class="headerlink" title="配置：windows10"></a>配置：windows10</h3><h3 id="方法一-暂时未成功-docker无法在非专业版windows10进行配置没找到虚拟机接口"><a href="#方法一-暂时未成功-docker无法在非专业版windows10进行配置没找到虚拟机接口" class="headerlink" title="方法一 暂时未成功 docker无法在非专业版windows10进行配置没找到虚拟机接口"></a>方法一 暂时未成功 docker无法在非专业版windows10进行配置没找到虚拟机接口</h3><p>在家庭版安装Hyper-v虚拟机<br>参考文献：<br>Hyper-V是Windows系统自带的虚拟机软件，其主要功能是在不影响原系统的情况下创建多个Windows或非Windows子系统。</p><p>请注意：Hyper-V 仅在 Windows 10 专业版、企业版和教育版以及 Windows Server 2012 及以上版本中可用。<br>1、打开记事本输入以下命令。</p><p>``</p><p>pushd “%~dp0”</p><p>dir /b %SystemRoot%\servicing\Packages*Hyper-V*.mum &gt;hyper-v.txt</p><p>for /f %%i in (‘findstr /i . hyper-v.txt 2^&gt;nul’) do dism /online /norestart /add-package:”%SystemRoot%\servicing\Packages\%%i”<br>del hyper-v.txt<br>Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL</p><p>``<br>2、保存并命名为 Hyper-V.cmd，然后点击文件，右键以管理员身份运行，等待执行完成</p><p>3、输入Y重启计算机，重启完后就可以按Win键在开始菜单下的Windows管理工具查看有没有安装成功，安装成功会有个Hyper-V管理器</p><p>docker 删除不干净问题<br>参考文章：</p><p>解决方法：<br>把 C:/Program Files/Docker 删除后<br><code>按下Window+R唤起命令输入界面，输入regedit打开注册表编辑在地址栏输入HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Docker Desktop将整个Docker Desktop组点击右键删除</code></p><h3 id="方法二-ubuntu-应用商店自带（推荐）【2024-1-5可用】"><a href="#方法二-ubuntu-应用商店自带（推荐）【2024-1-5可用】" class="headerlink" title="方法二 ubuntu 应用商店自带（推荐）【2024.1.5可用】"></a>方法二 ubuntu 应用商店自带（推荐）【2024.1.5可用】</h3><p>1）打开ubuntu<br>设置用户名和密码<br>2）<br><code>https://about.gitlab.com/downloads/#ubuntu1404</code></p><pre><code>sudo apt updatesudo apt-get upgradesudo apt-get install curl openssh-server ca-certificates postfix</code></pre><p>出现的问题：<br>1.Ubuntu错误提示 E: Could not open lock file /var/lib/dpkg/lock-frontend - open<br>解决方案：</p><pre><code>1. sudo rm /var/lib/dpkg/lock-frontend2. sudo rm /var/lib/dpkg/lock3. sudo apt install p7zip-full</code></pre><p>2.找不到gitLabURL<br>解决方案：</p><pre><code>```[windows10 找寻ip地址：192.168.0.129:8077 root密码123456]把/etc/gitlab/gitlab弄坏了一定要输入i！！！！### 方法三：windows10改ubuntu搭建gitlab服务器    准备：    1.U盘 32G（作者使用）    2.window10系统的电脑【把u盘变成装两个系统1.window10 2.ubuntu 的功能盘】1.先分区 用DiskGenius#### 1.windows10改ubuntu1）Ubuntu系统镜像下载![ubuntu首页照片](https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/ubuntuzp.jpg)2.1）制作启动盘软件(UltraISO)下载UltralSO官网：&gt;[](https://filehippo.com/download_ultra-iso)/直接下载免费试用版本，全部默认下一步安装。2.2）下载rufus(官网推荐)下载地址（https://rufus.ie/）或下载地址(https://www.jb51.net/softs/86993.html)【 分区类型：GPT和MBR的区别】&gt; MBRMBR的意思是“主引导记录”，是IBM公司早年间提出的。它是存在于磁盘驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统系统信息，并用一小段代码来启动系统。如果你安装了Windows，其启动信息就放在这一段代码中——如果MBR的信息损坏或误删就不能正常启动Windows，这时候你就需要找一个引导修复软件工具来修复它就可以了。Linux系统中MBR通常会是GRUB加载器。MBR。当一台电脑启动时，它会先启动主板自带的BIOS系统，bios加载MBR，MBR再启动Windows，这就是mbr的启动过程。&gt; GPTGPT的意思是GUID Partition Table，即“全局唯一标识磁盘分区表”。他是另外一种更加先进新颖的磁盘组织方式，一种使用UEFI启动的磁盘组织方式。最开始是为了更好的兼容性，后来因为其更大的支持内存（mbr分区最多支持2T的磁盘），更多的兼容而被广泛使用，特别是苹果的MAC系统全部使用gpt分区。gtp不在有分区的概念，所有CDEF盘都在一段信息中存储。这是一个正逐渐取代MBR的新标准，它和UEFI相辅相成——UEFI用于取代老旧的BIOS，而GPT则取代老旧的MBR。之所以叫作&quot;GUID分区表&quot;，是因为你的驱动器上的每个分区都有一个全局唯一的标识符（globally unique identifier，GUID）——这是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符；&gt; MBR分区和GPT分区的区别因为兼容问题，gpt其实在引导的最开始部分也有一段mbr引导，也叫做“保护引导”，为了防止设备不支持uefi。mbr最多支持2T，而gpt理论上是无限制的。mbr最多支持四个主分区，gpt没有限制。如果你想跑多系统，mbr最多4个而gpt没有限制。win7只能用mbr分区，从Win8开始微软建议你使用gpt。gpt是由uefi启动的，而uefi是后来才提出的概念，兼容性和稳定性不如bios+mbr。原文链接：https://blog.csdn.net/wjzh2008/article/details/126927841【文件系统】文件系统，是计算机管理数据的一种目录结构。*两张对比图片*![文件系统对比1](https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/%25E6%2596%2587%25E4%25BB%25B6%25E7%25B3%25BB%25E7%25BB%259F%25E5%25AF%25B9%25E6%25AF%25941.png)![文件系统对比2](https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%942.png)![rufus](https://cdn.jsdelivr.net/gh/qvp-nvn/image/img/rufus.jpg)【建议使用GPT和NTFS】单击第二行的“选择”，选择下载好的Ubuntu的iso文件。单机“打开”，询问是否下载，选择“是”。选择第一个，选择“OK”，再选择确定，稍等一会，启动盘制作完成。三、安装Ubuntu重启电脑，从u盘启动，作者从F11进入的进入Ubuntu（safe graphics）在界面中进入安装程序中文简体-安装Ubuntu-键盘布局建议选English(US)-网络连接-最小安装，其他默认-清除整个磁盘并安装Ubuntu，也可以分区【[分区参考](https://blog.csdn.net/u012052268/article/details/77145427)】-设置时区【自行设置】-设置用户名密码-自行设置-进行配置-在对应提示时拔掉u盘启动盘-进入ubuntu系统#### 2.ubuntu系统中搭建gitlab</code></pre><p>sudo apt update</p><p>sudo apt-get upgrade</p><p>sudo apt-get install curl openssh-server ca-certificates postfix<br>也可以用<br>sudo apt-get install -y curl openssh-server ca-certificates tzdata perl</p><p>curl -s <a href="https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh">https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh</a> | sudo bash</p><p>可以用在线和离线两种方式下载gitlab<br>1.在线【推荐】<br>2.离线</p><p>```</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;参考文章：&lt;/p&gt;
-&lt;h2 id=&quot;Clash-for-windows&quot;&gt;&lt;a href=&quot;#Clash-for-windows&quot; class=&quot;headerlink&quot; title=&quot;Clash for windows&quot;&gt;&lt;/a&gt;Clash for windows&lt;/h2&gt;</summary>
       
     
     
