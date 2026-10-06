@@ -77,14 +77,21 @@ body {
   width: 60%;
 }
 
-/* 站点标题：主色渐变 */
-#site-title,
+/* 作者名保留主色渐变（在文章页深色头图上） */
 .author-info__name {
   background: var(--brand-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: var(--transition);
+}
+
+/* 首页头图上的站点标题：头图偏浅，渐变字会糊掉，改为白色 + 加深阴影 */
+#page-header #site-title {
+  background: none;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .35), 0 1px 4px rgba(0, 0, 0, .25);
 }
 
 /* ---------- 3. 圆角卡片 + 悬浮微动效 ---------- */
@@ -218,15 +225,17 @@ body {
   background: var(--brand-gradient) !important;
 }
 
-/* 返回顶部 */
-#rightside > div,
-#rightside > a {
-  border-radius: 50%;
+/* 右侧按钮组：悬停/按压时铺主色底，图标必须同步变白
+   （主题原生只换背景不换字色，淡紫模式下会紫底深字看不清） */
+#rightside > div > button,
+#rightside > div > a {
   box-shadow: var(--shadow);
   transition: var(--transition);
 }
-#rightside > div:hover,
-#rightside > a:hover {
+#rightside > div > button:hover,
+#rightside > div > button:focus,
+#rightside > div > button:active,
+#rightside > div > a:hover {
   background: var(--brand);
   color: #fff;
   transform: translateY(-3px);
