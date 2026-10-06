@@ -39,6 +39,10 @@
   var root = document.documentElement
   var busy = false
 
+  /* 开关默认藏在「设置齿轮」的二级面板里，切换一次要点两下。
+     改成常驻显示；不想要就把它设为 false。 */
+  var PROMOTE_BUTTON = true
+
   /* ---------- 读取持久化的模式 ---------- */
   function readSaved () {
     try {
@@ -199,7 +203,21 @@
   }, true)
 
   /* ---------- 初始化 UI ---------- */
+  // 把开关从二级面板挪到常驻区（等 DOM 就绪后做一次即可）
+  function promoteButton () {
+    if (!PROMOTE_BUTTON) return
+    try {
+      var btn = document.getElementById('darkmode')
+      var panel = btn && btn.parentNode
+      var dock = document.getElementById('rightside-config-show')
+      if (btn && panel && panel.id === 'rightside-config-hide' && dock && !dock.contains(btn)) {
+        dock.insertBefore(btn, dock.firstChild)
+      }
+    } catch (e) {}
+  }
+
   function init () {
+    promoteButton()
     setMetaColor(current)
     syncIcon(false)
   }
