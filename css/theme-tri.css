@@ -1,0 +1,168 @@
+/* ========== 三档主题切换：日光 ☀ / 夜间 🌙 / 淡紫 🎨 ==========
+   切换交互参考 blog.ericterminal.com —— 点击处以圆形扩散过渡揭示新主题（View Transitions API）。
+   本文件与 source/js/theme-tri.js 配套；想整体回滚，
+   把 _config.butterfly.yml 的 inject.head 里 theme-tri.css / theme-tri.js 两行注释掉即可。
+   ================================================================ */
+
+/* ---------- 1. 切换按钮：内联 SVG 图标 ---------- */
+#darkmode i.fas.fa-adjust,
+#darkmode svg.theme-tri-icon {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+}
+#darkmode svg.theme-tri-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
+}
+/* 每次切换给一个「转过来」的小动效 */
+#darkmode.tri-spin svg.theme-tri-icon {
+  animation: tri-icon-swap .5s cubic-bezier(.34, 1.4, .64, 1);
+}
+@keyframes tri-icon-swap {
+  0%   { transform: rotate(-90deg) scale(.4); opacity: 0; }
+  60%  { transform: rotate(12deg)  scale(1.12); opacity: 1; }
+  100% { transform: rotate(0)      scale(1); opacity: 1; }
+}
+/* 无 JS 时保持原样，不出现空按钮 */
+#darkmode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- 2. 修补：夜间模式下补齐升级层的变量 ----------
+   上一版 upgrade.css 的 body 背景写死为浅色变量，
+   导致夜间模式背景不跟随。这里补上，并一并把阴影、主色调弱。 */
+[data-theme='dark'] {
+  --bg-soft: #121212;
+  --card-bg: rgba(30, 30, 34, .72);
+  --brand: #8f8ff0;
+  --brand-light: #a9a9f5;
+  --brand-gradient: linear-gradient(135deg, #7c83ff 0%, #a86cf7 100%);
+  --shadow-s: 0 2px 8px rgba(0, 0, 0, .30);
+  --shadow: 0 6px 20px rgba(0, 0, 0, .38);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, .50);
+}
+[data-theme='dark'] #footer {
+  background: rgba(24, 24, 28, .72);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, .30);
+}
+[data-theme='dark'] #nav.show,
+[data-theme='dark'] .nav-fixed #nav {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .40);
+}
+
+/* ---------- 3. 第三档：淡紫（Lilac） ---------- */
+[data-theme='lilac'] {
+  /* —— Butterfly 原生变量 —— */
+  --global-bg: #f5f2fc;
+  --font-color: #554a68;
+  --hr-border: rgba(139, 124, 246, .28);
+  --hr-before-color: #8b7cf6;
+  --search-bg: #fbf9ff;
+  --search-input-color: #554a68;
+  --search-result-title: #4a3f5e;
+  --preloader-bg: #f5f2fc;
+  --preloader-color: #8b7cf6;
+  --tab-border-color: #e8e0f8;
+  --tab-botton-bg: #efeafb;
+  --tab-botton-color: #6b5d85;
+  --tab-button-hover-bg: #e3daf7;
+  --tab-button-active-bg: #fdfbff;
+  --card-bg: #fdfbff;
+  --sidebar-bg: transparent;
+  --btn-hover-color: #8b7cf6;
+  --btn-color: #6b5d85;
+  --btn-bg: #f1ecfd;
+  --text-bg-hover: #8b7cf6;
+  --light-grey: #85799b;
+  --dark-grey: #b9aed0;
+  --white: #fff;
+  --text-highlight-color: #4a3f5e;
+  --blockquote-color: #6b5d85;
+  --blockquote-bg: #f2ecfd;
+  --reward-pop: #fdfbff;
+  --toc-link-color: #6b5d85;
+  --hl-color: #554a68;
+  --hl-bg: #f9f6ff;
+  --hltools-bg: #efeafb;
+  --hltools-color: #8b7cf6;
+  --hlnumber-bg: #f2ecfd;
+  --hlnumber-color: #a89bc4;
+  --hlscrollbar-bg: #e8e0f8;
+  --hlexpand-bg: linear-gradient(180deg, rgba(249, 246, 255, .6), rgba(249, 246, 255, .9));
+  --scrollbar-color: #dfd4f5;
+  --timeline-bg: #f1ecfd;
+
+  /* —— 升级层变量 —— */
+  --brand: #8b7cf6;
+  --brand-light: #a89bf8;
+  --brand-gradient: linear-gradient(135deg, #9b87f8 0%, #c9a4f7 100%);
+  --bg-soft: #f5f2fc;
+  --shadow-s: 0 2px 8px rgba(139, 124, 246, .07);
+  --shadow: 0 6px 20px rgba(139, 124, 246, .12);
+  --shadow-hover: 0 12px 32px rgba(139, 124, 246, .20);
+}
+
+/* 淡紫模式下几处用硬编码主色的地方也要跟着换 */
+[data-theme='lilac'] ::selection {
+  background: rgba(139, 124, 246, .22);
+  color: #7a63ee;
+}
+[data-theme='lilac'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a89bf8, #8b7cf6);
+}
+[data-theme='lilac'] #article-container blockquote {
+  background: rgba(139, 124, 246, .07);
+  border-left-color: #8b7cf6;
+}
+[data-theme='lilac'] #article-container code {
+  background: #f2ecfd;
+}
+[data-theme='lilac'] #footer {
+  background: rgba(253, 251, 255, .74);
+  box-shadow: 0 -2px 20px rgba(139, 124, 246, .08);
+}
+[data-theme='lilac'] #page-header::before {
+  background: linear-gradient(180deg,
+      rgba(155, 135, 248, .24) 0%,
+      rgba(201, 164, 247, .10) 40%,
+      rgba(245, 242, 252, 0) 100%);
+}
+[data-theme='lilac'] #nav.show,
+[data-theme='lilac'] .nav-fixed #nav {
+  box-shadow: 0 4px 24px rgba(139, 124, 246, .14);
+}
+
+/* ---------- 4. 圆形扩散波纹过渡（参考 ericterminal 的实现） ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* 新主题图层压在旧图层之上，用 clip-path 从点击处揭示 */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+/* 不支持 View Transitions 的浏览器：给一层柔和的整体淡入替代 */
+html[data-theme-switching='fallback'] body {
+  animation: tri-fade-in .38s ease;
+}
+@keyframes tri-fade-in {
+  from { opacity: .55; }
+  to   { opacity: 1; }
+}
+
+/* 尊重系统的「减少动态效果」设置 */
+@media (prefers-reduced-motion: reduce) {
+  #darkmode.tri-spin svg.theme-tri-icon,
+  html[data-theme-switching='fallback'] body {
+    animation: none !important;
+  }
+}
