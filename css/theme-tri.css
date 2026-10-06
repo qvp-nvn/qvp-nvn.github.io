@@ -12,8 +12,9 @@
   line-height: 1;
 }
 #darkmode svg.theme-tri-icon {
-  width: 18px;
-  height: 18px;
+  /* 与旁边 FA 按钮（16px 字形）视觉对齐：线性图标取 17px 补偿笔画细的视觉差 */
+  width: 17px;
+  height: 17px;
   transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
 }
 /* 每次切换给一个「转过来」的小动效 */
@@ -134,6 +135,21 @@
 [data-theme='lilac'] #nav.show,
 [data-theme='lilac'] .nav-fixed #nav {
   box-shadow: 0 4px 24px rgba(139, 124, 246, .14);
+}
+
+/* ---------- 3.5 导航栏固定态（下滑后 / 无头图页面） ----------
+   主题把背景写死为白色 rgba(255,255,255,.8)，只给 dark 配了覆盖；
+   淡紫模式下需要跟着换，否则下滑后导航栏突兀地变纯白。 */
+[data-theme='lilac'] #page-header.nav-fixed > #nav,
+[data-theme='lilac'] #page-header.not-top-img > #nav {
+  background: rgba(253, 251, 255, .82);
+  box-shadow: 0 5px 6px -5px rgba(139, 124, 246, .18);
+}
+/* 固定导航的 hover 色主题写死 #49b1f5（蓝），三档统一换成主色变量 */
+#page-header.nav-fixed #nav a:hover,
+#page-header.nav-fixed #nav #site-name:hover,
+#page-header.nav-fixed #nav #toggle-menu:hover {
+  color: var(--brand);
 }
 
 /* ---------- 4. 圆形扩散波纹过渡（参考 ericterminal 的实现） ---------- */

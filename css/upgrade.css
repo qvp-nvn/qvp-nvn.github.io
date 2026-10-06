@@ -59,7 +59,9 @@ body {
 #page-header #nav .site-page {
   position: relative;
 }
-#nav .site-page::after {
+/* 注意：必须带上 :not(.child) 才能压过主题原生的下划线规则
+   （原规则写死了浅蓝色 #80c8f8，特异性更高，不这样写会盖不住） */
+#nav .site-page:not(.child)::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -71,7 +73,7 @@ body {
   transition: var(--transition);
   transform: translateX(-50%);
 }
-#nav .site-page:hover::after {
+#nav .site-page:not(.child):hover::after {
   width: 60%;
 }
 
