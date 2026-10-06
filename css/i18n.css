@@ -1,55 +1,54 @@
-/* ========== 语言切换按钮样式 ========== */
+/* ========== 语言切换按钮样式 ==========
+   按钮位于设置二级面板 #rightside-config-hide 内
+   与「浅色/深色切换」「单栏/双栏切换」按钮风格一致
+   ====================================== */
 
 #lang-switch-btn {
-  position: absolute;
-  top: 50%;
-  right: 80px;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .55);
-  border: 1px solid var(--glass-border, rgba(255, 255, 255, .45));
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .35);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, .25));
   color: var(--font-color, #363636);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   cursor: pointer;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
   transition: all .25s cubic-bezier(.25, .8, .25, 1);
-  z-index: 100;
-  letter-spacing: .5px;
   padding: 0;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 
+#lang-switch-btn i {
+  font-size: 15px;
+}
+
+#lang-switch-btn span {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 1px;
+}
+
+/* 悬停效果与其它按钮一致 */
 #lang-switch-btn:hover {
   background: var(--brand, #5b5bd6);
   color: #fff;
-  transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 4px 14px rgba(91, 91, 214, .25);
+  transform: translateY(-2px);
 }
 
 #lang-switch-btn:active {
-  transform: translateY(-50%) scale(.95);
-}
-
-/* 移动端：放在汉堡菜单按钮旁边 */
-@media (max-width: 768px) {
-  #lang-switch-btn {
-    right: 64px;
-    width: 32px;
-    height: 32px;
-    font-size: 12px;
-  }
+  transform: translateY(0) scale(.96);
 }
 
 /* 深色模式适配 */
 [data-theme='dark'] #lang-switch-btn {
-  background: rgba(30, 30, 40, .55);
+  background: rgba(20, 20, 28, .45);
   color: #ddd;
-  border-color: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .06);
 }
 [data-theme='dark'] #lang-switch-btn:hover {
   background: var(--brand, #5b5bd6);
@@ -58,11 +57,21 @@
 
 /* 淡紫模式适配 */
 [data-theme='lilac'] #lang-switch-btn {
-  background: rgba(253, 250, 255, .62);
+  background: rgba(253, 250, 255, .42);
   color: #554a68;
-  border-color: rgba(255, 255, 255, .55);
+  border-color: rgba(255, 255, 255, .35);
 }
 [data-theme='lilac'] #lang-switch-btn:hover {
   background: var(--brand, #8b7cf6);
   color: #fff;
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  #lang-switch-btn {
+    width: 32px;
+    height: 32px;
+  }
+  #lang-switch-btn i { font-size: 13px; }
+  #lang-switch-btn span { font-size: 11px; }
 }
