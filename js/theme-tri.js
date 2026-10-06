@@ -66,8 +66,13 @@
   }
 
   // 主题自己的内联脚本此时已跑完（light/dark 已恢复），这里把第三档补回来
+  // ⭐ 首访默认走淡紫（lilac），与站点整体风格一致；用户切换后以其选择为准
+  //    但若用户系统明确是深色模式，则尊重其偏好首访给夜间，避免突兀
   var current = readSaved()
-  if (!current) current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+  if (!current) {
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    current = prefersDark ? 'dark' : 'lilac'
+  }
   if (root.getAttribute('data-theme') !== current) root.setAttribute('data-theme', current)
 
   /* ---------- 落地到页面 ---------- */

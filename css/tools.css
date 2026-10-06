@@ -1,0 +1,158 @@
+/* ========== 开源项目与工具页面样式 ========== */
+
+#tools-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 4px 40px;
+}
+
+.tools-loading,
+.tools-empty {
+  text-align: center;
+  color: var(--font-color, #888);
+  padding: 60px 0;
+  font-size: 15px;
+}
+
+.tools-section {
+  margin-bottom: 48px;
+}
+
+.tools-cat-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand, #5b5bd6);
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(91, 91, 214, .15);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.tools-cat-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: var(--brand-gradient, linear-gradient(180deg, #6b72ff, #9b5cf6));
+  border-radius: 2px;
+}
+
+.tools-cat-count {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--font-color, #888);
+  opacity: .7;
+  margin-left: auto;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tool-card {
+  display: block;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, .62);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, .45));
+  border-radius: 14px;
+  text-decoration: none !important;
+  color: inherit;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: all .3s cubic-bezier(.25, .8, .25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(91, 91, 214, .15);
+  border-color: var(--brand, #5b5bd6);
+}
+
+.tool-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.tool-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brand, #5b5bd6);
+}
+
+.tool-star {
+  font-size: 12px;
+  color: #f5a623;
+  background: rgba(245, 166, 35, .1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.tool-star i {
+  margin-right: 2px;
+}
+
+.tool-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--font-color, #555);
+  margin: 0 0 12px;
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tool-tag {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(91, 91, 214, .08);
+  color: var(--brand, #5b5bd6);
+  border: 1px solid rgba(91, 91, 214, .15);
+}
+
+/* 深色模式适配 */
+[data-theme='dark'] .tool-card {
+  background: rgba(30, 30, 40, .55);
+  border-color: rgba(255, 255, 255, .08);
+}
+[data-theme='dark'] .tool-tag {
+  background: rgba(91, 91, 214, .15);
+  border-color: rgba(91, 91, 214, .25);
+}
+
+/* 淡紫模式适配 */
+[data-theme='lilac'] .tool-card {
+  background: rgba(253, 250, 255, .62);
+  border-color: rgba(255, 255, 255, .55);
+}
+[data-theme='lilac'] .tool-tag {
+  background: rgba(139, 124, 246, .1);
+  color: var(--brand, #8b7cf6);
+  border-color: rgba(139, 124, 246, .2);
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tools-cat-title {
+    font-size: 19px;
+  }
+  .tool-card {
+    padding: 14px 16px;
+  }
+}
