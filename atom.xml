@@ -167,31 +167,6 @@
   </entry>
   
   <entry>
-    <title>React 学习笔记</title>
-    <link href="https://www.amoit.top/posts/react-study-notes/"/>
-    <id>https://www.amoit.top/posts/react-study-notes/</id>
-    <published>2024-01-05T08:09:01.000Z</published>
-    <updated>2026-10-06T12:33:24.403Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="react学习笔记"><a href="#react学习笔记" class="headerlink" title="react学习笔记"></a>react学习笔记</h2>]]></content>
-    
-    
-    <summary type="html">React 学习笔记整理，涵盖组件设计、Hooks 常用用法、状态管理与前端工程实践中的常见问题。</summary>
-    
-    
-    
-    <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="React" scheme="https://www.amoit.top/tags/React/"/>
-    
-    <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vue2 与 Vue3 学习笔记</title>
     <link href="https://www.amoit.top/posts/vue2-vue3-study-notes/"/>
     <id>https://www.amoit.top/posts/vue2-vue3-study-notes/</id>
@@ -208,11 +183,36 @@
     <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
+    <category term="Vue" scheme="https://www.amoit.top/tags/Vue/"/>
+    
     <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
     
     <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="Vue" scheme="https://www.amoit.top/tags/Vue/"/>
+  </entry>
+  
+  <entry>
+    <title>React 学习笔记</title>
+    <link href="https://www.amoit.top/posts/react-study-notes/"/>
+    <id>https://www.amoit.top/posts/react-study-notes/</id>
+    <published>2024-01-05T08:09:01.000Z</published>
+    <updated>2026-10-06T12:33:24.403Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="react学习笔记"><a href="#react学习笔记" class="headerlink" title="react学习笔记"></a>react学习笔记</h2>]]></content>
+    
+    
+    <summary type="html">React 学习笔记整理，涵盖组件设计、Hooks 常用用法、状态管理与前端工程实践中的常见问题。</summary>
+    
+    
+    
+    <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="React" scheme="https://www.amoit.top/tags/React/"/>
     
   </entry>
   
