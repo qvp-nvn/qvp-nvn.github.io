@@ -122,24 +122,4 @@
   }
 }
 
-/* ---------- 9. 淡紫氛围光斑（保留） ---------- */
-[data-theme='lilac'] body::before {
-  content: "";
-  position: fixed;
-  top: -10vh; right: -10vw;
-  width: 50vw; height: 50vw;
-  background: radial-gradient(circle, rgba(139, 124, 246, .18) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-  border-radius: 50%;
-}
-[data-theme='lilac'] body::after {
-  content: "";
-  position: fixed;
-  bottom: -15vh; left: -10vw;
-  width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(201, 164, 247, .12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-  border-radius: 50%;
-}
+/* ---------- 9. 背景光斑已移至 upgrade.css 的 body 多层渐变（此处不再需要） ---------- */

@@ -30,13 +30,37 @@
     try { localStorage.setItem(LANG_KEY, lang) } catch (e) {}
   }
 
-  /* ---------- 调 translate.js 切换 ---------- */
+  /* ---------- 调 translate.js 切换；失败时用 UI 字典兜底 ---------- */
+  var UI_DICT = {
+    '首页': 'Home', '时间轴': 'Timeline', '分类': 'Categories', '标签': 'Tags',
+    '留言板': 'Message', '友人帐': 'Friends', '日常': 'Daily', '追番': 'Anime',
+    '工具库': 'Toolkit', '关于': 'About', '搜索': 'Search', '回到顶部': 'Top',
+    '生命不息，追番不止！': 'Anime forever!', '想看': 'Want to Watch',
+    '在看': 'Watching', '看过': 'Watched'
+  }
+
+  function applyFallbackDict (lang) {
+    document.querySelectorAll('#nav .site-page span, .menus_item .site-page span, #sidebar-menus .site-page span').forEach(function (el) {
+      var raw = (el.getAttribute('data-orig') || el.textContent).trim()
+      if (!el.getAttribute('data-orig')) el.setAttribute('data-orig', raw)
+      if (lang === 'en' && UI_DICT[raw]) el.textContent = ' ' + UI_DICT[raw]
+      else el.textContent = ' ' + raw
+    })
+  }
+
   function switchLang (lang) {
-    if (!window.translate || typeof window.translate.changeLanguage !== 'function') return false
-    try {
-      window.translate.changeLanguage(TJS_CODE[lang])
-      return true
-    } catch (e) { return false }
+    var t = window.translate
+    if (t && typeof t.changeLanguage === 'function') {
+      try {
+        t.changeLanguage(TJS_CODE[lang])
+        console.log('[i18n] translate.js 切换到', TJS_CODE[lang])
+        return true
+      } catch (e) { console.warn('[i18n] translate.js 切换异常，走字典兜底', e) }
+    } else {
+      console.warn('[i18n] translate.js 未就绪，走字典兜底')
+    }
+    applyFallbackDict(lang)
+    return false
   }
 
   /* ---------- 更新按钮外观 ---------- */

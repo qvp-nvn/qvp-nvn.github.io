@@ -18,9 +18,35 @@
   --transition: all .3s cubic-bezier(.25, .8, .25, 1);
 }
 
-/* ---------- 1. 全局基调 ---------- */
+/* ---------- 1. 全局基调：彩色光斑背景（玻璃质感的前提） ----------
+   玻璃 = 半透明卡片 + blur + 背后有东西可透。
+   之前 body 是实色，卡片再透明也看不出效果；现在用多层 radial-gradient
+   色斑模拟 starlitn 的背景图，卡片透出的就是这些颜色。 */
 body {
-  background: var(--bg-soft);
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(107, 114, 255, .16), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 20%, rgba(155, 92, 246, .13), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 75% 85%, rgba(64, 173, 255, .10), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 10% 80%, rgba(255, 122, 217, .08), transparent 60%),
+    var(--bg-soft);
+  background-attachment: fixed;
+}
+[data-theme='dark'] body {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(107, 114, 255, .12), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 20%, rgba(155, 92, 246, .10), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 75% 85%, rgba(64, 173, 255, .07), transparent 60%),
+    var(--global-bg, #0d0d0d);
+  background-attachment: fixed;
+}
+[data-theme='lilac'] body {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(139, 124, 246, .22), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 25%, rgba(201, 164, 247, .18), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 70% 85%, rgba(124, 77, 255, .12), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 8% 75%, rgba(255, 170, 250, .10), transparent 60%),
+    #ece5f9;
+  background-attachment: fixed;
 }
 
 /* 选中文字用主色，细节处更统一 */
@@ -109,13 +135,13 @@ body {
 .card-widget:hover,
 .recent-post-item:hover {
   box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
+  /* 玻璃风格：悬停只加深阴影，不做位移（避免波动感） */
 }
 
-/* 文章卡片：封面微微放大 */
+/* 文章卡片：封面保持原尺寸（玻璃风格不做缩放动画） */
 .recent-post-item:hover .post_cover img,
 .post-card:hover .post_cover img {
-  transform: scale(1.06);
+  transform: none;
 }
 .post_cover img {
   border-radius: var(--radius) 0 0 var(--radius);
@@ -188,7 +214,6 @@ body {
 #aside-content .tags-cloud-list a:hover {
   background: var(--brand);
   color: #fff !important;
-  transform: translateY(-2px) scale(1.05);
 }
 
 /* 分类 / 归档导航栏 */
@@ -215,7 +240,6 @@ body {
   transition: var(--transition);
 }
 .pagination a:hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
 
@@ -238,7 +262,6 @@ body {
 #rightside > div > a:hover {
   background: var(--brand);
   color: #fff;
-  transform: translateY(-3px);
 }
 
 /* ---------- 7. 首页顶部大图 ---------- */
@@ -275,7 +298,6 @@ body {
 }
 #article-container .bangumi-item:hover {
   box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
 }
 
 /* ---------- 10. 移动端收窄圆角，避免溢出 ---------- */
