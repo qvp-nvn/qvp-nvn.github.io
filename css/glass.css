@@ -1,125 +1,191 @@
-/* ========== 玻璃拟态层（严格按 blog.starlitn.top 实测参数） ==========
-   抓取 starlitn.top 编译后 CSS 得到的真实参数：
-   · 导航 .liquid-glass-nav::before → background: rgba(255,255,255,0.08); backdrop-filter: blur(12px)
-   · 弹层 .lang-menu              → background: rgba(20,20,30,0.4);  backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1)
-   · 设置面板 .settings-panel     → background: rgba(30,30,45,0.72); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.15)
-   · 悬浮按钮 .back-to-top        → background: rgba(0,0,0,0.5);     border: 1px solid rgba(255,255,255,0.1)
-   核心原则：背景透明度极低（0.08~0.4），中间真正透出内容；hover 不做位移动画
+/* ========== 玻璃拟态层（严格按 starlitn 参数 + 压过主题实色） ==========
+   starlitn 实测：rgba(255,255,255,0.08)+blur(12px) / 深色 rgba(20,20,30,0.4)
+   本站背景图 bg7.jpeg 一直都在，之前卡片被主题实色 --card-bg 挡死。
+   本层全部用 !important / 高特异性强制透明，让背景图透出来。
    ====================================== */
 
-/* ---------- 三档变量（数值取自 starlitn 实测） ---------- */
 :root {
   --glass-blur: 12px;
-  --glass-bg-nav: rgba(255, 255, 255, 0.08);
-  --glass-bg-card: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-btn-bg: rgba(0, 0, 0, 0.5);
+  --glass-bg-card: rgba(255, 255, 255, 0.10);
+  --glass-bg-card-strong: rgba(255, 255, 255, 0.16);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-btn-bg: rgba(0, 0, 0, 0.35);
 }
 [data-theme='dark'] {
-  --glass-bg-nav: rgba(20, 20, 30, 0.4);
-  --glass-bg-card: rgba(20, 20, 30, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-btn-bg: rgba(0, 0, 0, 0.5);
+  --glass-bg-card: rgba(18, 18, 26, 0.42);
+  --glass-bg-card-strong: rgba(18, 18, 26, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-btn-bg: rgba(0, 0, 0, 0.45);
 }
 [data-theme='lilac'] {
-  --glass-bg-nav: rgba(30, 22, 48, 0.35);
-  --glass-bg-card: rgba(30, 22, 48, 0.35);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-btn-bg: rgba(30, 22, 48, 0.5);
+  --glass-bg-card: rgba(250, 246, 255, 0.14);
+  --glass-bg-card-strong: rgba(250, 246, 255, 0.22);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-btn-bg: rgba(30, 22, 48, 0.40);
 }
 
-/* ---------- 1. 顶部导航（= starlitn .liquid-glass-nav） ---------- */
+/* ---------- 1. 背景图轻微暗化：给玻璃卡片垫底、保证文字可读 ---------- */
+#web_bg {
+  filter: brightness(.86) saturate(.92);
+}
+[data-theme='dark'] #web_bg {
+  filter: brightness(.55) saturate(.85);
+}
+
+/* ---------- 2. 全部卡片强制透明（压过主题 --card-bg 实色） ---------- */
+#aside-content .card-widget,
+.card-widget,
+.recent-post-item,
+#recent-posts > .recent-post-item,
+.layout > .recent-post-item {
+  background: var(--glass-bg-card) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .12) !important;
+}
+#aside-content .card-widget:hover,
+.card-widget:hover,
+.recent-post-item:hover {
+  background: var(--glass-bg-card-strong) !important;
+  transform: none !important;
+}
+
+/* 卡片内再套实色背景的元素也透明化 */
+#aside-content .card-widget .item-headline,
+.recent-post-item .post_cover,
+.recent-post-item .recent-post-info {
+  background: transparent !important;
+}
+
+/* 文章列表卡片文字：浅玻璃上深色字 + 白描边保证可读 */
+.recent-post-item .article-title,
+.recent-post-item .article-meta,
+.recent-post-item .article-content {
+  color: #2a2a33;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, .5);
+}
+[data-theme='dark'] .recent-post-item .article-title,
+[data-theme='dark'] .recent-post-item .article-meta,
+[data-theme='dark'] .recent-post-item .article-content {
+  color: rgba(255, 255, 255, .92);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .45);
+}
+[data-theme='lilac'] .recent-post-item .article-title,
+[data-theme='lilac'] .recent-post-item .article-meta,
+[data-theme='lilac'] .recent-post-item .article-content {
+  color: #3a3250;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, .45);
+}
+
+/* ---------- 3. 导航栏玻璃（= starlitn .liquid-glass-nav） ---------- */
 #nav.show,
 .nav-fixed #nav,
 #page-header.nav-fixed > #nav,
 #page-header.not-top-img > #nav {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: var(--glass-bg-nav);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  background: var(--glass-bg-card) !important;
   border-bottom: 1px solid var(--glass-border);
 }
 
-/* ---------- 2. 卡片（= starlitn 弹层参数） ---------- */
-.card-widget,
-.recent-post-item,
-#aside-content .card-widget {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: var(--glass-bg-card);
-  border: 1px solid var(--glass-border);
-}
-
-/* ---------- 3. 右侧悬浮按钮（= starlitn .back-to-top） ---------- */
+/* ---------- 4. 右侧悬浮按钮（= starlitn .back-to-top） ---------- */
 #rightside > div > button,
 #rightside > div > a,
 #rightside > a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: var(--glass-btn-bg);
+  background: var(--glass-btn-bg) !important;
   border: 1px solid var(--glass-border);
-  /* 悬停不做位移动画，避免"波动"感 */
-  transition: background-color .2s ease, border-color .2s ease;
+  color: #fff;
+  transition: background-color .2s ease;
 }
 #rightside > div > button:hover,
 #rightside > div > a:hover,
 #rightside > a:hover {
+  background: var(--brand, #5b5bd6) !important;
   transform: none;
 }
 
-/* ---------- 4. 语言切换按钮（同悬浮按钮规格） ---------- */
+/* ---------- 5. 语言切换按钮 ---------- */
 #lang-switch-btn {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: var(--glass-btn-bg);
+  background: var(--glass-btn-bg) !important;
   border: 1px solid var(--glass-border);
+  color: #fff;
 }
 
-/* ---------- 5. 搜索弹窗 / 大浮层（= starlitn .settings-panel） ---------- */
+/* ---------- 6. 弹窗大浮层（= starlitn .settings-panel） ---------- */
 #local-search .search-dialog,
 .search-dialog {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-[data-theme='dark'] #local-search .search-dialog,
-[data-theme='dark'] .search-dialog {
-  background: rgba(30, 30, 45, 0.72);
-}
-[data-theme='lilac'] #local-search .search-dialog,
-[data-theme='lilac'] .search-dialog {
-  background: rgba(34, 26, 52, 0.72);
+  background: var(--glass-bg-card-strong) !important;
+  border: 1px solid var(--glass-border) !important;
 }
 
-/* ---------- 6. 提示框 note（轻玻璃，同 12px 参数） ---------- */
+/* ---------- 7. 提示框 note ---------- */
 .note {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border) !important;
 }
 
-/* ---------- 7. 工具页卡片（同卡片参数） ---------- */
+/* ---------- 8. 时钟日历卡片 ---------- */
+#card-clock-calendar {
+  background: var(--glass-bg-card) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  border: 1px solid var(--glass-border) !important;
+}
+
+/* ---------- 9. 工具页卡片 ---------- */
 .tool-card {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: var(--glass-bg-card) !important;
   border: 1px solid var(--glass-border) !important;
-  /* 悬停只变边框与阴影，不做位移 */
   transition: border-color .2s ease, box-shadow .2s ease;
 }
 .tool-card:hover {
   transform: none;
+  border-color: var(--brand, #5b5bd6) !important;
 }
 
-/* ---------- 8. 移动端 ---------- */
+/* ---------- 10. 相册页玻璃卡片 ---------- */
+.photo-item {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg-card) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+/* ---------- 11. 分页按钮 ---------- */
+.pagination a,
+.pagination .page-number {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg-card) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+/* ---------- 12. 页脚 ---------- */
+#footer {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, .25) !important;
+}
+[data-theme='dark'] #footer {
+  background: rgba(0, 0, 0, .4) !important;
+}
+
+/* ---------- 13. 移动端 ---------- */
 @media (max-width: 768px) {
-  #nav.show,
-  .nav-fixed #nav,
+  #aside-content .card-widget,
   .card-widget,
-  .recent-post-item,
-  #aside-content .card-widget {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  .recent-post-item {
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
   }
 }
-
-/* ---------- 9. 背景光斑已移至 upgrade.css 的 body 多层渐变（此处不再需要） ---------- */

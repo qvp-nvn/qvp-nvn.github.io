@@ -1,0 +1,323 @@
+/* ========== 侧栏附加组件样式 ==========
+   1. 随机逛逛按钮（右下角，与主题自带按钮同规格 35×35）
+   2. 时间胶囊卡片：模拟表盘 + 数字时间 + 月历
+   三档主题各有一套文字/描边色，保证在玻璃底上可读。
+   注意：所有 hover 只改颜色，不做位移或缩放（用户明确不要跳动）。
+   ====================================== */
+
+:root {
+  --cc-text: #2a2a33;
+  --cc-sub: #5f5f6b;
+  --cc-line: rgba(0, 0, 0, .08);
+  --cc-hover: rgba(0, 0, 0, .07);
+  --cc-dial-bg: rgba(255, 255, 255, .22);
+  --cc-hand: #2a2a33;
+}
+[data-theme='dark'] {
+  --cc-text: rgba(255, 255, 255, .92);
+  --cc-sub: rgba(255, 255, 255, .58);
+  --cc-line: rgba(255, 255, 255, .12);
+  --cc-hover: rgba(255, 255, 255, .12);
+  --cc-dial-bg: rgba(255, 255, 255, .10);
+  --cc-hand: rgba(255, 255, 255, .9);
+}
+[data-theme='lilac'] {
+  --cc-text: #3a3250;
+  --cc-sub: #6b6288;
+  --cc-line: rgba(139, 124, 246, .16);
+  --cc-hover: rgba(139, 124, 246, .18);
+  --cc-dial-bg: rgba(255, 255, 255, .30);
+  --cc-hand: #4a4066;
+}
+
+/* ---------------- 1. 随机逛逛按钮 ---------------- */
+#random-walk-wrap {
+  display: block;
+}
+
+.random-walk-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 5px;
+  padding: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.random-walk-btn svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.random-walk-btn:hover svg {
+  animation: none;                    /* 不做位移/缩放，只换底色 */
+}
+
+@media (max-width: 900px) {
+  #random-walk-wrap {
+    display: none;                    /* 移动端右侧栏拥挤，隐藏 */
+  }
+}
+
+/* ---------------- 2. 时间胶囊卡片 ---------------- */
+#card-clock-calendar .item-headline {
+  margin-bottom: 10px;
+}
+
+#card-clock-calendar .cc-body {
+  padding: 0 4px;
+}
+
+/* --- 表盘 + 数字 --- */
+.cc-clock {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.cc-dial {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--cc-dial-bg);
+  border: 1px solid var(--cc-line);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, .06);
+}
+
+.cc-tick {
+  position: absolute;
+  background: var(--cc-hand);
+  opacity: .5;
+  border-radius: 2px;
+}
+.cc-tick-12 { left: 50%; top: 6px;    width: 2px; height: 7px; margin-left: -1px; }
+.cc-tick-3  { right: 6px; top: 50%;   width: 7px; height: 2px; margin-top: -1px; }
+.cc-tick-6  { left: 50%; bottom: 6px; width: 2px; height: 7px; margin-left: -1px; }
+.cc-tick-9  { left: 6px;  top: 50%;   width: 7px; height: 2px; margin-top: -1px; }
+
+/* 指针：旋转中心 = 元素底端 = 表盘圆心（top + height = 50px） */
+.cc-hand {
+  position: absolute;
+  left: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 2px;
+}
+.cc-hand > i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--cc-hand);
+}
+.cc-hand-h { top: 24px; height: 26px; width: 3px;  margin-left: -1.5px; }
+.cc-hand-m { top: 14px; height: 36px; width: 2px;  margin-left: -1px; }
+.cc-hand-s { top: 8px;  height: 42px; width: 1.5px; margin-left: -.75px; }
+.cc-hand-s > i { background: var(--brand, #5b5bd6); }
+
+.cc-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--brand, #5b5bd6);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .5);
+}
+[data-theme='dark'] .cc-pin {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .35);
+}
+
+.cc-digital {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.cc-time {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: .5px;
+  color: var(--cc-text);
+  font-variant-numeric: tabular-nums;
+}
+.cc-time small {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: .65;
+  margin-left: 1px;
+}
+
+.cc-date {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--cc-sub);
+}
+
+.cc-hi {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--brand, #5b5bd6);
+}
+
+/* --- 月历 --- */
+.cc-cal {
+  border-top: 1px solid var(--cc-line);
+  padding-top: 10px;
+}
+
+.cc-cal-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.cc-cal-title {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cc-text);
+}
+
+.cc-nav,
+.cc-today {
+  border: 1px solid var(--cc-line);
+  background: transparent;
+  color: var(--cc-sub);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 4px 6px;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.cc-nav:hover,
+.cc-today:hover {
+  color: var(--brand, #5b5bd6);
+  background: var(--cc-hover);
+  border-color: var(--brand, #5b5bd6);
+}
+
+.cc-week,
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cc-week {
+  margin-bottom: 4px;
+}
+.cc-week span {
+  text-align: center;
+  font-size: 12px;
+  color: var(--cc-sub);
+  padding: 2px 0;
+}
+
+.cc-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--cc-text);
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease;
+}
+.cc-cell:hover {
+  background: var(--cc-hover);
+}
+.cc-cell.cc-we {
+  color: var(--brand, #5b5bd6);
+}
+.cc-cell.cc-empty {
+  cursor: default;
+  background: transparent;
+}
+.cc-cell.is-today {
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand, #5b5bd6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+}
+.cc-cell.is-today.cc-we {
+  color: #fff;
+}
+.cc-cell.is-active {
+  background: var(--cc-hover);
+  outline: 1px solid var(--brand, #5b5bd6);
+}
+.cc-cell.is-today.is-active {
+  background: var(--brand, #5b5bd6);
+}
+
+.cc-dot {
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--brand, #5b5bd6);
+}
+.cc-cell.is-today .cc-dot {
+  background: #fff;
+}
+
+/* --- 当日文章列表 --- */
+.cc-posts {
+  margin-top: 10px;
+  border-top: 1px dashed var(--cc-line);
+  padding-top: 8px;
+  min-height: 24px;
+}
+.cc-posts-title {
+  font-size: 12px;
+  color: var(--cc-sub);
+  margin-bottom: 5px;
+}
+.cc-post-link {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--cc-text);
+  padding: 3px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.cc-post-link:hover {
+  color: var(--brand, #5b5bd6);
+}
+.cc-none {
+  font-size: 12px;
+  color: var(--cc-sub);
+}
+
+/* 侧栏较窄时压缩表盘 */
+@media (max-width: 1200px) {
+  .cc-dial { width: 84px; height: 84px; }
+  .cc-hand-h { top: 18px; height: 24px; }
+  .cc-hand-m { top: 10px; height: 32px; }
+  .cc-hand-s { top: 5px;  height: 37px; }
+  .cc-time { font-size: 22px; }
+}

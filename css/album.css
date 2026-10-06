@@ -1,0 +1,240 @@
+/* ========== 相册页 ==========
+   瀑布流用 CSS 多列实现，图片高度自适应；卡片走玻璃底（配合 glass.css）。
+   hover 只做描边和轻微提亮，不做位移缩放。
+   ====================================== */
+
+:root {
+  --photo-text: #2a2a33;
+  --photo-sub: #6a6a76;
+  --photo-line: rgba(0, 0, 0, .1);
+}
+[data-theme='dark'] {
+  --photo-text: rgba(255, 255, 255, .92);
+  --photo-sub: rgba(255, 255, 255, .6);
+  --photo-line: rgba(255, 255, 255, .14);
+}
+[data-theme='lilac'] {
+  --photo-text: #3a3250;
+  --photo-sub: #6b6288;
+  --photo-line: rgba(139, 124, 246, .18);
+}
+
+/* ---------------- 分组筛选 ---------------- */
+.photo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 18px;
+}
+
+.photo-chip {
+  border: 1px solid var(--photo-line);
+  background: transparent;
+  color: var(--photo-sub);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.photo-chip em {
+  font-style: normal;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 2px;
+}
+.photo-chip:hover {
+  color: var(--brand, #5b5bd6);
+  border-color: var(--brand, #5b5bd6);
+}
+.photo-chip.is-active {
+  color: #fff;
+  background: var(--brand, #5b5bd6);
+  border-color: var(--brand, #5b5bd6);
+}
+.photo-chip.is-active em {
+  opacity: .85;
+}
+
+/* ---------------- 瀑布流 ---------------- */
+.photo-grid {
+  column-count: 3;
+  column-gap: 14px;
+}
+
+.photo-item {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  display: block;
+  margin: 0 0 14px;
+  padding: 6px 6px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  opacity: 0;
+  transform: none;
+  transition: opacity .3s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.photo-item.is-ready {
+  opacity: 1;
+}
+.photo-item:hover {
+  transform: none;
+  border-color: var(--brand, #5b5bd6);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .14);
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, .04);
+}
+
+.photo-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 4px 9px;
+  font-size: 13px;
+  color: var(--photo-text);
+}
+.photo-meta b {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.photo-meta i {
+  font-style: normal;
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--photo-sub);
+}
+
+.photo-none {
+  padding: 30px 0;
+  text-align: center;
+  color: var(--photo-sub);
+  font-size: 14px;
+}
+
+/* ---------------- 空状态 ---------------- */
+.photo-empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--photo-sub);
+}
+.photo-empty-icon {
+  font-size: 44px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.photo-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--photo-text);
+  margin: 0 0 8px;
+}
+.photo-empty-tip {
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0;
+}
+.photo-empty-tip code {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(125, 125, 125, .14);
+  font-size: 12px;
+}
+
+/* ---------------- 大图查看 ---------------- */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.photo-lightbox.is-open {
+  display: flex;
+}
+
+.plb-img {
+  max-width: 88vw;
+  max-height: 84vh;
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
+  cursor: zoom-out;
+}
+
+.plb-close,
+.plb-nav {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(0, 0, 0, .38);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background-color .2s ease;
+}
+.plb-close:hover,
+.plb-nav:hover {
+  background: var(--brand, #5b5bd6);
+}
+
+.plb-close {
+  top: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  font-size: 17px;
+}
+.plb-nav {
+  top: 50%;
+  margin-top: -24px;
+  width: 44px;
+  height: 48px;
+  font-size: 26px;
+}
+.plb-prev { left: 16px; }
+.plb-next { right: 16px; }
+
+.plb-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .88);
+  padding: 0 20px;
+}
+
+.plb-count {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .6);
+}
+
+/* ---------------- 响应式 ---------------- */
+@media (max-width: 900px) {
+  .photo-grid { column-count: 2; }
+}
+@media (max-width: 600px) {
+  .photo-grid { column-count: 1; }
+  .plb-nav { width: 36px; height: 42px; font-size: 22px; }
+}
