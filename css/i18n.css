@@ -1,26 +1,21 @@
 /* ========== 语言切换按钮样式 ==========
-   按钮位于设置二级面板 #rightside-config-hide 内
-   与「浅色/深色切换」「单栏/双栏切换」按钮风格一致
+   位置：右侧常驻面板 #rightside-config-show（齿轮按钮之前）
+   规格与 Butterfly 原生按钮一致（35px / 圆角 5px），玻璃参数同 starlitn
    ====================================== */
 
 #lang-switch-btn {
+  display: block;
+  margin-bottom: 5px;
   width: 35px;
   height: 35px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, .35);
-  border: 1px solid var(--glass-border, rgba(255, 255, 255, .25));
-  color: var(--font-color, #363636);
-  font-size: 14px;
-  font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  border-radius: 5px;
+  background: var(--glass-btn-bg, rgba(0, 0, 0, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--btn-color, #fff);
+  font-size: 16px;
   cursor: pointer;
-  transition: all .25s cubic-bezier(.25, .8, .25, 1);
-  padding: 0;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
+  text-align: center;
+  transition: background-color .2s ease, border-color .2s ease;
 }
 
 #lang-switch-btn i {
@@ -28,42 +23,25 @@
 }
 
 #lang-switch-btn span {
+  display: none;              /* 面板空间有限，只显示图标 */
   font-size: 12px;
   font-weight: 700;
-  margin-left: 1px;
 }
 
-/* 悬停效果与其它按钮一致 */
+/* 悬停：与主题原生按钮一致，不做位移 */
 #lang-switch-btn:hover {
-  background: var(--brand, #5b5bd6);
+  background: var(--btn-hover-color, var(--brand, #5b5bd6));
   color: #fff;
-  transform: translateY(-2px);
+  transform: none;
 }
 
 #lang-switch-btn:active {
-  transform: translateY(0) scale(.96);
+  transform: none;
 }
 
-/* 深色模式适配 */
-[data-theme='dark'] #lang-switch-btn {
-  background: rgba(20, 20, 28, .45);
-  color: #ddd;
-  border-color: rgba(255, 255, 255, .06);
-}
-[data-theme='dark'] #lang-switch-btn:hover {
-  background: var(--brand, #5b5bd6);
-  color: #fff;
-}
-
-/* 淡紫模式适配 */
+/* 淡紫模式下图标颜色 */
 [data-theme='lilac'] #lang-switch-btn {
-  background: rgba(253, 250, 255, .42);
-  color: #554a68;
-  border-color: rgba(255, 255, 255, .35);
-}
-[data-theme='lilac'] #lang-switch-btn:hover {
-  background: var(--brand, #8b7cf6);
-  color: #fff;
+  color: rgba(255, 255, 255, .92);
 }
 
 /* 移动端 */
@@ -71,7 +49,7 @@
   #lang-switch-btn {
     width: 32px;
     height: 32px;
+    font-size: 14px;
   }
   #lang-switch-btn i { font-size: 13px; }
-  #lang-switch-btn span { font-size: 11px; }
 }
