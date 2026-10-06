@@ -27,7 +27,9 @@
   100% { transform: rotate(0)      scale(1); opacity: 1; }
 }
 /* 无 JS 时保持原样，不出现空按钮 */
-#darkmode {
+/* 图标居中：SVG 被设为 block 后不响应按钮的 text-align:center，
+   必须用 flex 居中；特异性要压过主题原生 #rightside > div > button */
+#rightside > div > button#darkmode {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,56 +57,58 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, .40);
 }
 
-/* ---------- 3. 第三档：淡紫（Lilac） ---------- */
+/* ---------- 3. 第三档：淡紫（Lilac） ----------
+   底色取 #ece5f9 这一档：肉眼明显能感到「紫」，又不影响正文对比度（≥5.5:1） */
 [data-theme='lilac'] {
   /* —— Butterfly 原生变量 —— */
-  --global-bg: #f5f2fc;
+  --global-bg: #ece5f9;
   --font-color: #554a68;
-  --hr-border: rgba(139, 124, 246, .28);
+  --hr-border: rgba(139, 124, 246, .30);
   --hr-before-color: #8b7cf6;
-  --search-bg: #fbf9ff;
+  --search-bg: #f6f2fd;
   --search-input-color: #554a68;
   --search-result-title: #4a3f5e;
-  --preloader-bg: #f5f2fc;
+  --preloader-bg: #ece5f9;
   --preloader-color: #8b7cf6;
-  --tab-border-color: #e8e0f8;
-  --tab-botton-bg: #efeafb;
+  --tab-border-color: #ded2f5;
+  --tab-botton-bg: #e6dbf8;
   --tab-botton-color: #6b5d85;
-  --tab-button-hover-bg: #e3daf7;
-  --tab-button-active-bg: #fdfbff;
-  --card-bg: #fdfbff;
+  --tab-button-hover-bg: #dbcbf6;
+  --tab-button-active-bg: #faf7fe;
+  --card-bg: #faf7fe;
   --sidebar-bg: transparent;
   --btn-hover-color: #8b7cf6;
   --btn-color: #6b5d85;
-  --btn-bg: #f1ecfd;
+  --btn-bg: #eee7fb;
   --text-bg-hover: #8b7cf6;
   --light-grey: #85799b;
   --dark-grey: #b9aed0;
   --white: #fff;
   --text-highlight-color: #4a3f5e;
   --blockquote-color: #6b5d85;
-  --blockquote-bg: #f2ecfd;
-  --reward-pop: #fdfbff;
+  --blockquote-bg: #ede4fc;
+  --reward-pop: #faf7fe;
   --toc-link-color: #6b5d85;
   --hl-color: #554a68;
-  --hl-bg: #f9f6ff;
-  --hltools-bg: #efeafb;
+  --hl-bg: #f6f2ff;
+  --hltools-bg: #e9def9;
   --hltools-color: #8b7cf6;
-  --hlnumber-bg: #f2ecfd;
+  --hlnumber-bg: #f0e9fc;
   --hlnumber-color: #a89bc4;
-  --hlscrollbar-bg: #e8e0f8;
-  --hlexpand-bg: linear-gradient(180deg, rgba(249, 246, 255, .6), rgba(249, 246, 255, .9));
-  --scrollbar-color: #dfd4f5;
-  --timeline-bg: #f1ecfd;
+  --hlscrollbar-bg: #ded2f5;
+  --hlexpand-bg: linear-gradient(180deg, rgba(246, 242, 255, .6), rgba(246, 242, 255, .9));
+  --scrollbar-color: #d6c7f3;
+  --timeline-bg: #efe8fb;
 
   /* —— 升级层变量 —— */
   --brand: #8b7cf6;
   --brand-light: #a89bf8;
   --brand-gradient: linear-gradient(135deg, #9b87f8 0%, #c9a4f7 100%);
-  --bg-soft: #f5f2fc;
-  --shadow-s: 0 2px 8px rgba(139, 124, 246, .07);
-  --shadow: 0 6px 20px rgba(139, 124, 246, .12);
-  --shadow-hover: 0 12px 32px rgba(139, 124, 246, .20);
+  --bg-soft: #ece5f9;
+  --card-bg: #faf7fe;
+  --shadow-s: 0 2px 8px rgba(139, 124, 246, .08);
+  --shadow: 0 6px 20px rgba(139, 124, 246, .13);
+  --shadow-hover: 0 12px 32px rgba(139, 124, 246, .22);
 }
 
 /* 淡紫模式下几处用硬编码主色的地方也要跟着换 */
@@ -120,21 +124,21 @@
   border-left-color: #8b7cf6;
 }
 [data-theme='lilac'] #article-container code {
-  background: #f2ecfd;
+  background: #eee6fd;
 }
 [data-theme='lilac'] #footer {
-  background: rgba(253, 251, 255, .74);
-  box-shadow: 0 -2px 20px rgba(139, 124, 246, .08);
+  background: rgba(240, 233, 252, .8);
+  box-shadow: 0 -2px 20px rgba(139, 124, 246, .10);
 }
 [data-theme='lilac'] #page-header::before {
   background: linear-gradient(180deg,
-      rgba(155, 135, 248, .24) 0%,
-      rgba(201, 164, 247, .10) 40%,
-      rgba(245, 242, 252, 0) 100%);
+      rgba(147, 124, 247, .30) 0%,
+      rgba(196, 160, 247, .14) 40%,
+      rgba(236, 229, 249, 0) 100%);
 }
 [data-theme='lilac'] #nav.show,
 [data-theme='lilac'] .nav-fixed #nav {
-  box-shadow: 0 4px 24px rgba(139, 124, 246, .14);
+  box-shadow: 0 4px 24px rgba(139, 124, 246, .16);
 }
 
 /* ---------- 3.5 导航栏固定态（下滑后 / 无头图页面） ----------
@@ -142,8 +146,8 @@
    淡紫模式下需要跟着换，否则下滑后导航栏突兀地变纯白。 */
 [data-theme='lilac'] #page-header.nav-fixed > #nav,
 [data-theme='lilac'] #page-header.not-top-img > #nav {
-  background: rgba(253, 251, 255, .82);
-  box-shadow: 0 5px 6px -5px rgba(139, 124, 246, .18);
+  background: rgba(241, 235, 252, .86);
+  box-shadow: 0 5px 6px -5px rgba(139, 124, 246, .20);
 }
 /* 固定导航的 hover 色主题写死 #49b1f5（蓝），三档统一换成主色变量 */
 #page-header.nav-fixed #nav a:hover,

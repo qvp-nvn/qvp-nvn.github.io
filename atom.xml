@@ -167,31 +167,6 @@
   </entry>
   
   <entry>
-    <title>Vue2 与 Vue3 学习笔记</title>
-    <link href="https://www.amoit.top/posts/vue2-vue3-study-notes/"/>
-    <id>https://www.amoit.top/posts/vue2-vue3-study-notes/</id>
-    <published>2024-01-05T08:09:01.000Z</published>
-    <updated>2026-10-06T12:33:24.366Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="vsc"><a href="#vsc" class="headerlink" title="vsc"></a>vsc</h2><h3 id="2024-4-12-下载源过期问题"><a href="#2024-4-12-下载源过期问题" class="headerlink" title="2024.4.12 下载源过期问题"></a>2024.4.12 下载源过期问题</h3><p>一、报错情况 </p><pre><code>npm ERR! code CERT_HAS_EXPIREDnpm ERR! errno CERT_HAS_EXPIREDnpm ERR! request to https://registry.npm.taobao.org/webpack failed, reason: certificate has expired</code></pre><p>npm的证书失效了，它不再支持自签名证书 </p><p>二、解决方案</p><pre><code>1.查看自己的下载源npm config get registry2.发现我们之前配置了下载镜像源为https开头的，https://registry.npm.taobao.org/3.执行命令清除npm缓存 npm cache clean --force4.执行命令取消ssl验证 npm config set strict-ssl false5.再次执行npm install ***，还不行可以尝试设置你的npm镜像源为http开头的，不使用httpsnpm config set registry http://registry.npm.taobao.org</code></pre><h3 id="配置node环境和包管理工具"><a href="#配置node环境和包管理工具" class="headerlink" title="配置node环境和包管理工具"></a>配置node环境和包管理工具</h3><p>1.npm,node 安装<br>Node的介绍与安装<br>Node.js是一个基于Chrome V8引擎的JavaScript运行时。它允许开发者使用JavaScript在服务器端运行代码，而不仅仅局限于浏览器环境。Node.js提供了丰富的内置模块和包管理器npm，使开发者能够轻松地构建和管理应用程序。Node.js在前端开发中广泛应用于构建工具、服务器端渲染、API开发等方面，为前端工程师提供了更多的技术选择和灵活性。</p><pre><code>检查代码node -vnpm -v</code></pre><p>2.yarn 的安装</p><pre><code>npm install --global yarnyarn --version</code></pre><ol><li>Webpack的介绍与安装<br>Webpack： Webpack是一个模块打包工具，它可以将多个前端资源（如JavaScript、CSS、图片等）打包成一个或多个静态文件。Webpack通过模块化的方式管理项目中的各个模块，并根据配置文件进行打包和优化。它提供了丰富的插件和加载器，可以处理各种类型的文件，实现代码分割、压缩、懒加载等功能。Webpack还支持热模块替换（HMR），可以在开发过程中实时预览修改的效果。通过使用Webpack，前端工程师可以更好地组织和管理项目代码，提高开发效率和性能。<br>```<br>npm install webpack -g</li></ol><pre><code>4.Vue CLI的安装与介绍Vue CLI是一个用于快速构建Vue.js项目的脚手架工具。它提供了一套完整的项目开发工具链，包括项目初始化、开发服务器、打包构建等功能。Vue CLI基于Webpack，并集成了Vue.js相关的插件和配置，使得前端工程师可以快速搭建和开发Vue项目。Vue CLI还提供了丰富的插件和模板，可以根据项目需求进行定制化配置。通过使用Vue CLI，前端工程师可以快速启动项目，统一项目结构和开发规范，并享受到Vue.js的开发优势。全局安装Vue CLI</code></pre><p>npm install -g @vue/cli</p><pre><code>5.初始化Vue项目并运行</code></pre><p>新建一个文件夹，在控制台输入<br>vue create vue2_test<br>选择vue2或者vue3的默认模板安装 (回车键)<br>安装好后，执行<br>cd vue2_test<br>npm run serve</p><pre><code>## Vue框架学习渐进式JavaScript框架vue是一个框架，也是一个生态。官方文档：[地址](https://cn.vuejs.org)</code></pre><p>window版本:<br>yarn 与npm<br>npm i yarn //下到本磁盘中<br>npm i - global yarn //下载到全局<br>yarn add ** </p><pre><code>### Vue和react对比### 使用vue的不同方式：1.无须构建步骤，渐进式增强静态的HTML2.在任何页面中作为Web Components 嵌入3.单页应用 SPA4.全栈/服务器渲染 SSR5.Jamstrack /静态站点生成 SSG6.开发桌面端、移动端、webGL，甚至是命令行终端中的界面### vue API：选项式API和组合式API### Element-UI 主题样式更改</code></pre><p>帮助文档:<a href="https://element.eleme.cn/2.7/#/zh-CN/component/custom-theme">https://element.eleme.cn/2.7/#/zh-CN/component/custom-theme</a><br>在线生成工具:<a href="https://elementui.github.io/theme-chalk-preview/#/zh-CN">https://elementui.github.io/theme-chalk-preview/#/zh-CN</a><br>```</p>]]></content>
-    
-    
-    <summary type="html">Vue2 与 Vue3 学习笔记，涵盖响应式原理、组合式 API、组件通信与项目实践中的常见问题。</summary>
-    
-    
-    
-    <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="Vue" scheme="https://www.amoit.top/tags/Vue/"/>
-    
-    <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>React 学习笔记</title>
     <link href="https://www.amoit.top/posts/react-study-notes/"/>
     <id>https://www.amoit.top/posts/react-study-notes/</id>
@@ -208,11 +183,36 @@
     <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
+    <category term="React" scheme="https://www.amoit.top/tags/React/"/>
+    
     <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
     
     <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="React" scheme="https://www.amoit.top/tags/React/"/>
+  </entry>
+  
+  <entry>
+    <title>Vue2 与 Vue3 学习笔记</title>
+    <link href="https://www.amoit.top/posts/vue2-vue3-study-notes/"/>
+    <id>https://www.amoit.top/posts/vue2-vue3-study-notes/</id>
+    <published>2024-01-05T08:09:01.000Z</published>
+    <updated>2026-10-06T12:33:24.366Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="vsc"><a href="#vsc" class="headerlink" title="vsc"></a>vsc</h2><h3 id="2024-4-12-下载源过期问题"><a href="#2024-4-12-下载源过期问题" class="headerlink" title="2024.4.12 下载源过期问题"></a>2024.4.12 下载源过期问题</h3><p>一、报错情况 </p><pre><code>npm ERR! code CERT_HAS_EXPIREDnpm ERR! errno CERT_HAS_EXPIREDnpm ERR! request to https://registry.npm.taobao.org/webpack failed, reason: certificate has expired</code></pre><p>npm的证书失效了，它不再支持自签名证书 </p><p>二、解决方案</p><pre><code>1.查看自己的下载源npm config get registry2.发现我们之前配置了下载镜像源为https开头的，https://registry.npm.taobao.org/3.执行命令清除npm缓存 npm cache clean --force4.执行命令取消ssl验证 npm config set strict-ssl false5.再次执行npm install ***，还不行可以尝试设置你的npm镜像源为http开头的，不使用httpsnpm config set registry http://registry.npm.taobao.org</code></pre><h3 id="配置node环境和包管理工具"><a href="#配置node环境和包管理工具" class="headerlink" title="配置node环境和包管理工具"></a>配置node环境和包管理工具</h3><p>1.npm,node 安装<br>Node的介绍与安装<br>Node.js是一个基于Chrome V8引擎的JavaScript运行时。它允许开发者使用JavaScript在服务器端运行代码，而不仅仅局限于浏览器环境。Node.js提供了丰富的内置模块和包管理器npm，使开发者能够轻松地构建和管理应用程序。Node.js在前端开发中广泛应用于构建工具、服务器端渲染、API开发等方面，为前端工程师提供了更多的技术选择和灵活性。</p><pre><code>检查代码node -vnpm -v</code></pre><p>2.yarn 的安装</p><pre><code>npm install --global yarnyarn --version</code></pre><ol><li>Webpack的介绍与安装<br>Webpack： Webpack是一个模块打包工具，它可以将多个前端资源（如JavaScript、CSS、图片等）打包成一个或多个静态文件。Webpack通过模块化的方式管理项目中的各个模块，并根据配置文件进行打包和优化。它提供了丰富的插件和加载器，可以处理各种类型的文件，实现代码分割、压缩、懒加载等功能。Webpack还支持热模块替换（HMR），可以在开发过程中实时预览修改的效果。通过使用Webpack，前端工程师可以更好地组织和管理项目代码，提高开发效率和性能。<br>```<br>npm install webpack -g</li></ol><pre><code>4.Vue CLI的安装与介绍Vue CLI是一个用于快速构建Vue.js项目的脚手架工具。它提供了一套完整的项目开发工具链，包括项目初始化、开发服务器、打包构建等功能。Vue CLI基于Webpack，并集成了Vue.js相关的插件和配置，使得前端工程师可以快速搭建和开发Vue项目。Vue CLI还提供了丰富的插件和模板，可以根据项目需求进行定制化配置。通过使用Vue CLI，前端工程师可以快速启动项目，统一项目结构和开发规范，并享受到Vue.js的开发优势。全局安装Vue CLI</code></pre><p>npm install -g @vue/cli</p><pre><code>5.初始化Vue项目并运行</code></pre><p>新建一个文件夹，在控制台输入<br>vue create vue2_test<br>选择vue2或者vue3的默认模板安装 (回车键)<br>安装好后，执行<br>cd vue2_test<br>npm run serve</p><pre><code>## Vue框架学习渐进式JavaScript框架vue是一个框架，也是一个生态。官方文档：[地址](https://cn.vuejs.org)</code></pre><p>window版本:<br>yarn 与npm<br>npm i yarn //下到本磁盘中<br>npm i - global yarn //下载到全局<br>yarn add ** </p><pre><code>### Vue和react对比### 使用vue的不同方式：1.无须构建步骤，渐进式增强静态的HTML2.在任何页面中作为Web Components 嵌入3.单页应用 SPA4.全栈/服务器渲染 SSR5.Jamstrack /静态站点生成 SSG6.开发桌面端、移动端、webGL，甚至是命令行终端中的界面### vue API：选项式API和组合式API### Element-UI 主题样式更改</code></pre><p>帮助文档:<a href="https://element.eleme.cn/2.7/#/zh-CN/component/custom-theme">https://element.eleme.cn/2.7/#/zh-CN/component/custom-theme</a><br>在线生成工具:<a href="https://elementui.github.io/theme-chalk-preview/#/zh-CN">https://elementui.github.io/theme-chalk-preview/#/zh-CN</a><br>```</p>]]></content>
+    
+    
+    <summary type="html">Vue2 与 Vue3 学习笔记，涵盖响应式原理、组合式 API、组件通信与项目实践中的常见问题。</summary>
+    
+    
+    
+    <category term="前端开发" scheme="https://www.amoit.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="前端" scheme="https://www.amoit.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="学习笔记" scheme="https://www.amoit.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Vue" scheme="https://www.amoit.top/tags/Vue/"/>
     
   </entry>
   
