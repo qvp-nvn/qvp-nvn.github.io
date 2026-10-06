@@ -2,52 +2,151 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://amoit.top/posts/0.html</loc>
+    <loc>https://www.amoit.top/posts/github-roll-back-code/</loc>
     
-    <lastmod>2024-01-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/2297fd45.html</loc>
-    
-    <lastmod>2024-01-09</lastmod>
+    <lastmod>2026-10-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://amoit.top/posts/2289fd47.html</loc>
+    <loc>https://www.amoit.top/posts/test-post/</loc>
     
-    <lastmod>2024-01-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/2289fd47.html</loc>
-    
-    <lastmod>2024-01-05</lastmod>
+    <lastmod>2026-10-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://amoit.top/posts/2297fd41.html</loc>
+    <loc>https://www.amoit.top/posts/lanqiao-cup-python-prep/</loc>
     
-    <lastmod>2024-01-05</lastmod>
+    <lastmod>2026-10-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://amoit.top/essay/index.html</loc>
+    <loc>https://www.amoit.top/posts/graduation-thesis/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/digital-painting-notes/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/windows10-disk-partition/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/gitlab-server-win10/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/hexo-netlify-twikoo-blog/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/ajax-nodejs-webpack-notes/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/vue2-vue3-study-notes/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/picgo-github-image-bed/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/matplotlib-chinese-mac/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/vector-icon-image-sites/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/uni-app-study-notes/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/react-study-notes/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/posts/hexo-butterfly-theme-tweak/</loc>
+    
+    <lastmod>2026-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.amoit.top/essay/</loc>
     
     <lastmod>2024-01-04</lastmod>
     
@@ -56,16 +155,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/posts/4de81b83.html</loc>
-    
-    <lastmod>2024-01-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/4de81b79.html</loc>
+    <loc>https://www.amoit.top/album/</loc>
     
     <lastmod>2024-01-02</lastmod>
     
@@ -74,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/album/index.html</loc>
+    <loc>https://www.amoit.top/tags/</loc>
     
     <lastmod>2024-01-02</lastmod>
     
@@ -83,52 +173,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/tags/index.html</loc>
-    
-    <lastmod>2024-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/4de81b78.html</loc>
-    
-    <lastmod>2024-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/4de81b80.html</loc>
-    
-    <lastmod>2024-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/2297fd4d.html</loc>
-    
-    <lastmod>2024-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/posts/2297fd4f.html</loc>
-    
-    <lastmod>2024-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://amoit.top/air-conditioner/index.html</loc>
+    <loc>https://www.amoit.top/air-conditioner/</loc>
     
     <lastmod>2023-01-12</lastmod>
     
@@ -137,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/link/index.html</loc>
+    <loc>https://www.amoit.top/link/</loc>
     
     <lastmod>2023-01-11</lastmod>
     
@@ -146,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/manifest.json</loc>
+    <loc>https://www.amoit.top/manifest.json</loc>
     
     <lastmod>2023-01-09</lastmod>
     
@@ -155,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://amoit.top/archives.html</loc>
+    <loc>https://www.amoit.top/archives</loc>
     
     <lastmod>2023-01-08</lastmod>
     
@@ -165,8 +210,8 @@
   
 
   <url>
-    <loc>https://amoit.top/</loc>
-    <lastmod>2024-01-09</lastmod>
+    <loc>https://www.amoit.top/</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

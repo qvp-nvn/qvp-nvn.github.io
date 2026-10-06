@@ -1,0 +1,34 @@
+# robots.txt for https://www.amoit.top
+# 允许所有搜索引擎抓取全部内容
+User-agent: *
+Allow: /
+
+# 明确告知百度蜘蛛抓取活跃页面（配合主动推送效果更好）
+User-agent: Baiduspider
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# 无需抓取的路径（不产生搜索结果，抓取只浪费权重）
+Disallow: /search/
+Disallow: /tags/
+Disallow: /*/tags/
+Disallow: /page/
+Disallow: /comments/
+Disallow: /bangumis/
+
+# 静态资源与搜索结果页无需索引
+Disallow: /css/
+Disallow: /js/
+Disallow: /img/
+Disallow: /live2dw/
+Disallow: /anzhiyu/
+Disallow: /search.xml
+Disallow: /baidu_urls.txt
+
+# 地图位置（必须最后一行）
+Sitemap: https://www.amoit.top/sitemap.xml
+Sitemap: https://www.amoit.top/baidusitemap.xml
+Sitemap: https://www.amoit.top/atom.xml
