@@ -234,7 +234,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 32px;
   border-radius: 6px;
   font-size: 13px;
   color: var(--cc-text);
@@ -280,6 +280,32 @@
 }
 .cc-cell.is-today .cc-dot {
   background: #fff;
+}
+
+/* 节假日/节气小标签（starlitn 同款：日期下方的迷你文字） */
+.cc-hd {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  font-size: 9px;
+  line-height: 1;
+  text-align: center;
+  color: var(--brand, #5b5bd6);
+  opacity: .85;
+  transform: scale(.9);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cc-cell.is-today .cc-hd {
+  color: rgba(255, 255, 255, .95);
+  opacity: 1;
+}
+.cc-cell.is-holiday {
+  color: var(--brand, #5b5bd6);
+}
+.cc-cell.is-today.is-holiday {
+  color: #fff;
 }
 
 /* --- 当日文章列表 --- */

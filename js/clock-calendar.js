@@ -14,6 +14,26 @@
   var WEEK = ['日', '一', '二', '三', '四', '五', '六']
   var timer = null
 
+  /* 公历固定节假日 + 2026 年农历节日与节气（每年小表，未覆盖的月份就不显示） */
+  var HOLIDAYS = {
+    '01-01': '元旦', '02-14': '情人节', '03-08': '妇女节',
+    '04-01': '愚人节', '05-01': '劳动节', '05-04': '青年节',
+    '06-01': '儿童节', '07-01': '建党节', '08-01': '建军节',
+    '09-10': '教师节', '10-01': '国庆', '12-24': '平安夜',
+    '12-25': '圣诞节',
+    /* 2026 农历 / 节气 */
+    '2026-02-17': '春节', '2026-03-05': '惊蛰', '2026-03-20': '春分',
+    '2026-04-05': '清明', '2026-05-05': '立夏', '2026-06-19': '端午',
+    '2026-06-21': '夏至', '2026-08-07': '立秋', '2026-09-25': '中秋',
+    '2026-10-08': '寒露', '2026-10-23': '霜降', '2026-11-07': '立冬',
+    '2026-12-22': '冬至'
+  }
+
+  function holidayOf (k) {
+    if (HOLIDAYS[k]) return HOLIDAYS[k]
+    return HOLIDAYS[k.slice(5)] || ''
+  }
+
   function pad (n) { return n < 10 ? '0' + n : String(n) }
   function key (y, m, d) { return y + '-' + pad(m + 1) + '-' + pad(d) }
 
@@ -161,8 +181,12 @@
       if (map[k]) cls += ' has-post'
       var isWe = (startDow + i - 1) % 7 === 0 || (startDow + i - 1) % 7 === 6
       if (isWe) cls += ' cc-we'
+      var hol = holidayOf(k)
+      if (hol) cls += ' is-holiday'
       html += '<span class="' + cls + '" data-date="' + k + '">' +
-        '<em>' + i + '</em>' + (map[k] ? '<i class="cc-dot"></i>' : '') + '</span>'
+        '<em>' + i + '</em>' +
+        (hol ? '<i class="cc-hd">' + hol + '</i>' : (map[k] ? '<i class="cc-dot"></i>' : '')) +
+        '</span>'
     }
     grid.innerHTML = html
   }
