@@ -1,28 +1,26 @@
 /* =========================================================
    站点统计：本站访客数(UV) / 总访问量(PV) / 今日访问
    ---------------------------------------------------------
-   双层策略（ never 空白 ）：
-     1) 主：LeanCloud 第三方云存储（跨域 REST API）
-        真实跨设备累计，访客换电脑/换浏览器也能累计进来。
+   双层策略（永远不空白）：
+     1) 主：本站自己的后端接口 /api/stats（Vercel Serverless + Vercel KV）
+        真实跨设备累计。它是页面同源地址，不存在 CORS 跨域被拦的问题，
+        也不依赖任何第三方云服务 —— 不蒜子 2024 年已关停、LeanCloud 官宣
+        逐步停服，这两个都不能再用了，所以数据收回自己账号里。
      2) 备：本机 localStorage 统计
-        云端没配 / 跨域被拦 / 接口超时，自动降级成本地数字。
+        后端还没配 / 接口 404 / 超时，自动降级成本地数字。
 
    计数规则
-   - UV  : 「日期 + 访客唯一 ID」去重，同一天同一台设备只算 1 位；
-           跨自然日自动记为新访客。云端按天去重，跨设备也不会重复计。
+   - UV  : 「日期 + 访客唯一 ID」在后端去重，同一天同一台设备只算 1 位，
+           跨设备同日也不会重复计（key 存 3 天自动过期，不会无限膨胀）。
    - PV  : 每个新页面（新标签页 / 新窗口 / 换页）记 1 次，刷新不重复。
    - 今日: 当天的累计访问次数。
-
-   为什么不用「不蒜子」：该服务已于 2024 年关停，官方源与
-   jsdelivr / unpkg / staticfile / bootcdn / baomitu 全部 404，
-   换任何 CDN 都没有意义，所以直接换成 LeanCloud。
    ========================================================= */
 (function () {
   'use strict'
 
-  /* 下方这一行的真实值由 scripts/site-stats.cjs 在构建时自动替换，
-     也可直接在 _config.butterfly.yml 的 site_stats.leancloud 里改。 */
-  var CFG = /*__SS_LC_CFG__*/{"enabled":false,"id":"","key":"","region":"cn","counter":"Visitor"};
+  /* 这一行在构建时由 scripts/site-stats.cjs 自动替换，
+     平时改 _config.butterfly.yml 的 site_stats 段即可，不用动代码。 */
+  var CFG = /*__SS_LC_CFG__*/{"enabled":false,"api":"/api/stats"};
 
   var KEY = 'site_stats_v1'
   var SESS_KEY = 'site_stats_sess'
@@ -71,118 +69,52 @@
     } catch (e) { return false } // 隐私模式 / 存储满了
   }
 
-  /* ---------- XHR（带超时，失败不抛错） ---------- */
-  function req (method, url, body, headers) {
-    return new Promise(function (resolve, reject) {
-      try {
-        var x = new XMLHttpRequest()
-        x.open(method, url, true)
-        x.timeout = TIMEOUT
-        var h = headers || {}
-        h['Content-Type'] = 'application/json'
-        h['Accept'] = 'application/json'
-        for (var k in h) { if (h[k]) x.setRequestHeader(k, h[k]) }
-        x.onreadystatechange = function () {
-          if (x.readyState !== 4) return
-          if (x.status >= 200 && x.status < 300) {
-            var out = x.responseText
-            try { out = JSON.parse(out) } catch (e) {}
-            resolve(out)
-          } else { reject(new Error('http' + x.status)) }
-        }
-        x.ontimeout = function () { reject(new Error('timeout')) }
-        x.onerror = function () { reject(new Error('network')) }
-        x.send(body ? JSON.stringify(body) : null)
-      } catch (e) { reject(e) }
-    })
-  }
-
-  /* ---------- LeanCloud ---------- */
+  /* ---------- 本站后端接口（同源，没有 CORS 问题） ---------- */
   var SID = guid()
-  var cache = {}   // 云端 counters 的 objectId
   var cloudValue = null
 
   function enabled () {
-    return CFG.enabled && !!CFG.id && !!CFG.key
+    return CFG.enabled === true && !!CFG.api
   }
 
-  function base () {
-    var host = CFG.region === 'global' ? 'lncldglobal.com' : 'cn-nodes.com'
-    return 'https://' + CFG.id + '.api.' + host + '/1.1'
-  }
-
-  function lch () {
-    return { 'X-LC-Id': CFG.id, 'X-LC-Key': CFG.key }
-  }
-
-  function path (name) {
-    return base() + '/classes/' + CFG.counter + '?where=' + encodeURIComponent(JSON.stringify({ name: name }))
-  }
-
-  /* 查一条 counter，返回 {id, value}；查不到返回 null（POST 建一条） */
-  function getOne (name, create) {
-    return req('GET', path(name), null, lch()).then(function (r) {
-      var arr = (r && r.results) || []
-      if (arr.length) {
-        cache[name] = arr[0].objectId
-        return { id: arr[0].objectId, value: Number(arr[0].value) || 0 }
+  function request (method, body) {
+    return new Promise(function (resolve, reject) {
+      var url = CFG.api + (method === 'GET' ? '?_=' + Date.now() : '')
+      var x
+      try { x = new XMLHttpRequest() } catch (e) { return reject(e) }
+      x.open(method, url, true)
+      x.timeout = TIMEOUT
+      x.setRequestHeader('Content-Type', 'application/json')
+      x.onreadystatechange = function () {
+        if (x.readyState !== 4) return
+        if (x.status >= 200 && x.status < 300) {
+          var out = x.responseText
+          try { out = JSON.parse(out) } catch (e) {}
+          resolve(out)
+        } else { reject(new Error('http' + x.status)) }
       }
-      if (!create) return null
-      return req('POST', base() + '/classes/' + CFG.counter, { name: name, value: 0 }, lch()).then(function (r2) {
-        if (r2 && r2.objectId) cache[name] = r2.objectId
-        return { id: (r2 && r2.objectId) || null, value: 0 }
-      })
+      x.ontimeout = function () { reject(new Error('timeout')) }
+      x.onerror = function () { reject(new Error('network')) }
+      x.send(body ? JSON.stringify(body) : null)
     })
   }
 
-  /* 原子自增（LeanCloud Increment 操作，并发也安全） */
-  function inc (id) {
-    if (!id) return Promise.resolve(false)
-    return req('PUT', base() + '/classes/' + CFG.counter + '/' + id,
-      { value: { __op: 'Increment', amount: 1 } }, lch())
-      .then(function (r) {
-        if (r && typeof r.value !== 'undefined') {
-          return r.value
-        }
-        return true
-      })
-      .catch(function () { return false })
-  }
-
-  /* 读取云端真实数字（不写入），用于首屏立即显示 */
+  /* 读真实数字 */
   function readCloud () {
-    var t = today()
-    return Promise.all([
-      getOne('pv', true),
-      getOne('uv', true),
-      getOne(t, true)
-    ]).then(function (r) {
-      cloudValue = { pv: r[0] ? r[0].value : 0, uv: r[1] ? r[1].value : 0, today: r[2] ? r[2].value : 0 }
+    return request('GET').then(function (r) {
+      cloudValue = {
+        pv: Number(r && r.pv) || 0,
+        uv: Number(r && r.uv) || 0,
+        today: Number(r && r.today) || 0
+      }
       paint()
       return cloudValue
     })
   }
 
-  /* 上报：PV +1；UV 按「今天 + 访客ID」去重后 +1；今日 +1 */
+  /* 上报一次访问（UV 去重交给后端） */
   function report () {
-    var t = today()
-    return Promise.all([getOne('pv'), getOne('uv'), getOne(t)])
-      .then(function (r) {
-        return Promise.all([inc(r[0] && r[0].id)])
-          .then(function () { return r })
-      })
-      .then(function () { return getOne('u:' + t + ':' + SID) })  // 只查：今天这位访客记过没
-      .then(function (found) {
-        if (found) return false                 // 记过 → 不算新访客
-        return getOne('u:' + t + ':' + SID, true) // 没记过 → 建一条，代表 1 位新访客
-          .then(function (rec) { return inc(rec && rec.id) })
-      })
-      .then(function () { return inc(cache[t]) })  // 今日访问 +1
-      .catch(function () { /* 上报失败无所谓，下次访问会补上 */ })
-  }
-
-  function reportPv () {
-    return getOne('pv').then(function (r) { return inc(r && r.id) }).catch(function () {})
+    return request('POST', { sid: SID }).catch(function () {})
   }
 
   /* ---------- 本机兜底计数 ---------- */
@@ -255,11 +187,10 @@
       els.td = makeItem('今日访问', '', 'ss-today-pv', 'fa-sun')
     }
     var uv = l.uv, pv = l.pv, td = l.todayCount
-    var viaCloud = cloudValue
-    if (viaCloud) {
-      uv = Math.max(Number(viaCloud.uv) || 0, l.uv)
-      pv = Math.max(Number(viaCloud.pv) || 0, l.pv)
-      td = Math.max(Number(viaCloud.today) || 0, l.todayCount)
+    if (cloudValue) {
+      uv = Math.max(cloudValue.uv, l.uv)
+      pv = Math.max(cloudValue.pv, l.pv)
+      td = Math.max(cloudValue.today, l.todayCount)
     }
     if (els.uv) els.uv.textContent = num(uv)
     if (els.pv) els.pv.textContent = num(pv)
@@ -271,25 +202,20 @@
     bump(true)
     paint()
 
-    if (!enabled()) return          // 没配云端 → 纯本地兜底
-    readCloud()                     // 先拉真实数字显示
-      .catch(function () { paint() })
-      .then(function () { return report() })   // 再上报本次访问
+    if (!enabled()) return                        // 后端没开 → 纯本机兜底
+    readCloud()                                   // 先取真实数字显示
+      .catch(function () { paint() })             // 接口 404/超时 → 静默降级，不影响页面
+      .then(function () { return report() })      // 再上报本次访问
   }
 
-  /* pjax / 换页：只加一次 PV，不重复计 UV */
+  /* pjax / 换页：再上报一次（UV 由后端按天去重，不会重复计） */
   var counted = false
   function onNewPage () {
     if (counted) return
     counted = true
-    bump(false)
-    if (els.uv) {
-      var local = read()
-      els.uv.textContent = num((local && local.uv) || 0)
-    }
     if (!document.querySelector('.card-webinfo')) return
     if (!enabled()) return
-    reportPv()
+    report()
   }
   document.addEventListener('pjax:complete', onNewPage)
 
