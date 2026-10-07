@@ -338,3 +338,17 @@ body {
   font-size: 12px;
   color: #8b7cf6;
 }
+
+/* 页脚文字可读性：版权行/框架行原本偏淡 */
+#footer-wrap .copyright,
+#footer-wrap .framework-info {
+  color: #6b6285;
+}
+[data-theme='dark'] #footer-wrap .copyright,
+[data-theme='dark'] #footer-wrap .framework-info {
+  color: #b9b3cf;
+}
+#footer-wrap .framework-info a {
+  color: inherit;
+  border-bottom: 1px dotted currentColor;
+}
