@@ -67,6 +67,11 @@
       log('移动端，按配置不展示')
       return
     }
+    /* pjax 切页时脚本可能被再次执行，已有舞台就直接复用，避免出现两个看板娘 */
+    if (window.__oml2d || document.getElementById('oml2d-stage')) {
+      log('舞台已存在，跳过重复初始化')
+      return
+    }
     if (!window.OML2D || typeof window.OML2D.loadOml2d !== 'function') {
       log('OML2D 未就绪，2.5s 后重试')
       setTimeout(function () {
