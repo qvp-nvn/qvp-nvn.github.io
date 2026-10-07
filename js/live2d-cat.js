@@ -1,51 +1,81 @@
-/* ========== 看板娘：猫娘 cat（Cubism 3） ==========
-   模型来源：桌面「49 2d cat（无按键）女」，Cubism 3 (.moc3)。
-   旧插件 L2Dwidget 只支持 Cubism 2，换用 OML2D（支持 2/3/4 代）。
-   依赖（已在 inject bottom 按顺序引入）：
-     1. live2dcubismcore.min.js —— Cubism 3 运行时
-     2. oml2d index.min.js      —— 组件库
-   模型文件：/live2d/cat/cat.model3.json（贴图已从 8192 压到 2048）
-   ==================================================== */
+/* ========== 看板娘：猫娘 cat（Cubism 3 / .moc3）==========
+   模型来源：桌面「49 2d cat（无按键）女」
+   渲染：oh-my-live2d 0.19.3（自带 PIXI 6 + pixi-live2d-display + Cubism4 核心）
+   —— 不需要再单独引入 live2dcubismcore / pixi，oml2d.min.js 已全量打包
+   模型文件：/live2d/cat/cat.model3.json
+   ========================================================= */
 (function () {
   'use strict'
 
-  /* 移动端屏幕窄，避免遮挡正文（与旧配置一致：手机不展示） */
-  function tooSmall () {
-    return window.innerWidth < 768
+  var MODEL = '/live2d/cat/cat.model3.json'
+
+  function log (msg, extra) {
+    if (!window.console) return
+    console.warn('[live2d-cat] ' + msg, extra === undefined ? '' : extra)
+  }
+
+  function cleanup () {
+    var s = document.getElementById('oml2d-stage')
+    if (s && s.parentNode) s.parentNode.removeChild(s)
+    var b = document.querySelector('.oml2d-status-bar, #oml2d-status-bar')
+    if (b && b.parentNode) b.parentNode.removeChild(b)
+    var m = document.querySelector('.oml2d-menus, #oml2d-menus')
+    if (m && m.parentNode) m.parentNode.removeChild(m)
+  }
+
+  function init () {
+    var oml2d
+    try {
+      oml2d = window.OML2D.loadOml2d({
+        dockedPosition: 'left',
+        mobileDisplay: false,
+        sayHello: false,
+        transitionTime: 800,
+        primaryColor: '#8b7cf6',
+        parentElement: document.body,
+        models: [
+          {
+            name: 'cat',
+            path: MODEL,
+            scale: 0.075,
+            position: [0, 0]
+          }
+        ]
+      })
+    } catch (e) {
+      log('loadOml2d 抛错', e && e.message)
+      cleanup()
+      return
+    }
+
+    /* 兜底：15s 后画布仍没渲染出来就撤掉，避免一直挂着「加载中」 */
+    setTimeout(function () {
+      try {
+        var cv = document.querySelector('#oml2d-stage canvas, .oml2d-stage canvas')
+        if (!cv || !cv.width) {
+          log('15s 内未渲染出画布，已移除组件')
+          cleanup()
+        }
+      } catch (e) {}
+    }, 15000)
+
+    window.__oml2d = oml2d
   }
 
   function boot () {
-    if (tooSmall()) return
-    if (!window.OML2D) {
-      // CDN 还没回来（弱网/被拦），稍后重试一次
+    if (window.innerWidth < 768) {
+      log('移动端，按配置不展示')
+      return
+    }
+    if (!window.OML2D || typeof window.OML2D.loadOml2d !== 'function') {
+      log('OML2D 未就绪，2.5s 后重试')
       setTimeout(function () {
-        if (window.OML2D) init()
+        if (window.OML2D && typeof window.OML2D.loadOml2d === 'function') init()
+        else log('OML2D 始终不可用，放弃加载')
       }, 2500)
       return
     }
     init()
-  }
-
-  function init () {
-    try {
-      window.OML2D.loadOml2d({
-        models: [
-          {
-            path: '/live2d/cat/cat.model3.json',
-            scale: 0.06,
-            position: [-20, 60],
-            stageStyle: {
-              width: 240,
-              height: 340
-            }
-          }
-        ],
-        parentElement: document.body,
-        sayHello: false,
-        transitionTime: 1000,
-        tips: false
-      })
-    } catch (e) {}
   }
 
   if (document.readyState === 'loading') {
