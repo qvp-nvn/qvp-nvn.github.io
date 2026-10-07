@@ -347,3 +347,182 @@
   .cc-hand-s { top: 5px;  height: 37px; }
   .cc-time { font-size: 22px; }
 }
+
+/* ---------------- 3. 侧栏 GitHub 贡献热力图 ----------------
+   取代原来那张只会显示空白的「电子钟」卡片。
+   数据构建时固化，运行时无第三方请求。 */
+:root {
+  --ghc-sub: #5f5f6b;
+  --ghc-brand: #5b5bd6;
+  --ghc-l0: rgba(30, 25, 60, .10);
+  --ghc-l1: #cfc6f5;
+  --ghc-l2: #aba0ef;
+  --ghc-l3: #8b7cf6;
+  --ghc-l4: #5b5bd6;
+  --ghc-link: #5b5bd6;
+}
+[data-theme='dark'] {
+  --ghc-sub: rgba(255, 255, 255, .58);
+  --ghc-brand: #a99cfa;
+  --ghc-l0: rgba(255, 255, 255, .09);
+  --ghc-l1: #37315c;
+  --ghc-l2: #554a94;
+  --ghc-l3: #7a6ada;
+  --ghc-l4: #a99cfa;
+  --ghc-link: #a99cfa;
+}
+[data-theme='lilac'] {
+  --ghc-sub: #6b6288;
+  --ghc-brand: #7b6ae8;
+  --ghc-l0: rgba(139, 124, 246, .13);
+  --ghc-l1: #d6cdf8;
+  --ghc-l2: #b3a6f1;
+  --ghc-l3: #9182ee;
+  --ghc-l4: #7b6ae8;
+  --ghc-link: #7b6ae8;
+}
+
+#card-github-heatmap {
+  padding: 16px 14px 14px;
+}
+
+#card-github-heatmap .ghc-body {
+  margin-top: 10px;
+}
+
+#card-github-heatmap .ghc-stat {
+  margin-bottom: 9px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--ghc-sub);
+}
+
+#card-github-heatmap .ghc-stat b {
+  margin-right: 3px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ghc-brand);
+}
+
+#card-github-heatmap .ghc-stat em {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  font-style: normal;
+  opacity: .78;
+}
+
+/* 月份刻度：百分比绝对定位，窄栏下不会互相挤压 */
+#card-github-heatmap .ghc-months {
+  position: relative;
+  height: 12px;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--ghc-sub);
+}
+
+#card-github-heatmap .ghc-months span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+#card-github-heatmap .ghc-grid {
+  display: grid;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1px;
+}
+
+#card-github-heatmap .ghc-cell {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 1.5px;
+  background: var(--ghc-l0);
+  transition: filter .15s ease;
+}
+
+#card-github-heatmap .ghc-cell.lv1 { background: var(--ghc-l1); }
+#card-github-heatmap .ghc-cell.lv2 { background: var(--ghc-l2); }
+#card-github-heatmap .ghc-cell.lv3 { background: var(--ghc-l3); }
+#card-github-heatmap .ghc-cell.lv4 { background: var(--ghc-l4); }
+#card-github-heatmap .ghc-cell.is-empty { background: transparent; }
+#card-github-heatmap .ghc-cell[data-tip]:hover { filter: brightness(1.35); }
+
+#card-github-heatmap .ghc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 10px;
+  color: var(--ghc-sub);
+}
+
+#card-github-heatmap .ghc-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+#card-github-heatmap .ghc-legend .ghc-cell {
+  width: 9px;
+  flex: 0 0 9px;
+}
+
+#card-github-heatmap .ghc-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--ghc-link);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px dotted currentColor;
+}
+
+#card-github-heatmap .ghc-foot a:hover {
+  border-bottom-style: solid;
+}
+
+#card-github-heatmap .ghc-foot a i {
+  font-size: 8px;
+}
+
+/* ---------------- 4. 网站资讯统计项（本地自建 UV/PV/今日） ----------------
+   替代不蒜子：由 site-stats.js 动态注入到 .card-webinfo .webinfo 末尾 */
+.card-webinfo .webinfo-item.ss-item {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 0;
+}
+
+.card-webinfo .webinfo-item.ss-item > i.fas {
+  font-size: 11px;
+  opacity: .7;
+  color: var(--ghc-brand, #5b5bd6);
+}
+
+.card-webinfo .webinfo-item.ss-item .ss-name {
+  flex: 0 0 auto;
+  font-size: 13px;
+}
+
+.card-webinfo .webinfo-item.ss-item .ss-count {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ghc-brand, #5b5bd6);
+  transition: color .18s ease;
+}
+
+.card-webinfo .webinfo-item.ss-item:hover .ss-count {
+  color: #8b7cf6;
+}
+
+.card-webinfo .webinfo-item.ss-item:hover > i.fas {
+  opacity: 1;
+}
