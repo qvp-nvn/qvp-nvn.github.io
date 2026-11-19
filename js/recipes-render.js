@@ -132,7 +132,7 @@
     } else {
       html += '<div class="recipe-grid">' + rows.map(card).join('') + '</div>'
     }
-    html += '<p class="recipe-tip">共 ' + rows.length + ' 道 · 想添菜谱？编辑 <code>source/_data/recipes.json</code> 即可</p>'
+    html += '<p class="recipe-tip">共 ' + rows.length + ' 道</p>'
     box.innerHTML = html
 
     var input = document.getElementById('recipe-search-input')
@@ -164,7 +164,7 @@
   }
 
   if (!list.length) {
-    box.innerHTML = '<div class="recipe-empty"><i class="fas fa-utensils"></i><p>还没有收录食谱</p><span>在 source/_data/recipes.json 里添加第一条菜谱吧</span></div>'
+    box.innerHTML = '<div class="recipe-empty"><i class="fas fa-utensils"></i><p>还没有收录食谱</p></div>'
   } else {
     render()
   }
